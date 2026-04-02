@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Mar 2026 pada 08.10
+-- Waktu pembuatan: 02 Apr 2026 pada 05.08
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -45,12 +45,14 @@ CREATE TABLE `buku` (
 
 INSERT INTO `buku` (`id_buku`, `id_kategori`, `judul`, `pengarang`, `penerbit`, `tahun_terbit`, `stok`, `cover`, `deskripsi`) VALUES
 (2, 3, 'Pulang', 'Tere Liye', 'Republika', '2015', 63, 'cover_1770254237_ddddd.jpg', 'Pulang Tere Liye tentang Bujang, anak pedalaman yang menjadi bos shadow economy dan berjuang demi keluarga, sedangkan Pulang Leila S. Chudori mengisahkan Dimas Suryo, eksil politik 1965 yang terdampar di Paris dan kisahnya terhubung dengan tragedi 1998.'),
-(9, 4, 'Atomic Habits', 'James Clear', 'PT Gramedia Pustaka Utama', '2019', 65, 'cover_1770253252_atomic habits.jpg', 'Atomic Habits karya James Clear membahas bagaimana perubahan kecil yang konsisten (kebiasaan atomik) dapat menghasilkan dampak besar dalam hidup, dengan fokus pada sistem daripada tujuan, membangun kebiasaan baik, dan menghilangkan kebiasaan buruk melalui pendekatan ilmiah yang praktis dan mudah diterapkan sehari-hari.'),
-(11, 1, 'RPL Kelas XI', 'Yudi Subekti, dkk.', 'Grafindo', '2025', 44, 'cover_1771984294_rpll.jpg', 'Buku Rekayasa Perangkat Lunak untuk SMK/MAK Kelas XI hadir untuk menunjang kegiatan pembelajaran. Buku ini merupakan buku Teks Pendamping dengan kedudukan sebagai variasi penyajian dari Buku Teks Utama yang disediakan pemerintah. Buku ini hadir untuk membantu Anda memahami materi-materi rekayasa perangkat lunak untuk kemudian dapat diterapkan dalam memecahkan permasalahan sehari-hari melalui solusi yang melibatkan mater tersebut.'),
-(12, 3, 'Hujan', 'Tere Liye', 'PT Gramedia Pustaka Utama', '2016', 45, 'cover_1771984387_hjn.jpg', 'Kisah tentang melupakan. Tentang Hujan.Novel ini adalah naskah awal (asli) dari penulis; tanpa sentuhan editing, layout serta cover dari penerbit, dengan demikian, naskah ini berbeda dengan versi cetak, pun memiliki kelebihan dan kelemahan masing-masing.'),
+(9, 4, 'Atomic Habits', 'James Clear', 'PT Gramedia Pustaka Utama', '2019', 48, 'cover_1770253252_atomic habits.jpg', 'Atomic Habits karya James Clear membahas bagaimana perubahan kecil yang konsisten (kebiasaan atomik) dapat menghasilkan dampak besar dalam hidup, dengan fokus pada sistem daripada tujuan, membangun kebiasaan baik, dan menghilangkan kebiasaan buruk melalui pendekatan ilmiah yang praktis dan mudah diterapkan sehari-hari.'),
+(11, 1, 'RPL Kelas XI', 'Yudi Subekti, dkk.', 'Grafindo', '2025', 43, 'cover_1771984294_rpll.jpg', 'Buku Rekayasa Perangkat Lunak untuk SMK/MAK Kelas XI hadir untuk menunjang kegiatan pembelajaran. Buku ini merupakan buku Teks Pendamping dengan kedudukan sebagai variasi penyajian dari Buku Teks Utama yang disediakan pemerintah. Buku ini hadir untuk membantu Anda memahami materi-materi rekayasa perangkat lunak untuk kemudian dapat diterapkan dalam memecahkan permasalahan sehari-hari melalui solusi yang melibatkan mater tersebut.'),
+(12, 3, 'Hujan', 'Tere Liye', 'PT Gramedia Pustaka Utama', '2016', 43, 'cover_1771984387_hjn.jpg', 'Kisah tentang melupakan. Tentang Hujan.Novel ini adalah naskah awal (asli) dari penulis; tanpa sentuhan editing, layout serta cover dari penerbit, dengan demikian, naskah ini berbeda dengan versi cetak, pun memiliki kelebihan dan kelemahan masing-masing.'),
 (13, 1, 'Filsafat Ilmu', 'Liza Husnita', '-', '2024', 55, 'cover_1771984403_111.jpg', '\"Filsafat Ilmu\" adalah sebuah panduan komprehensif yang menguraikan landasan filsafat yang mendasari pengetahuan ilmiah. Buku ini membahas secara mendalam peran dan kontribusi filsafat terhadap pengembangan ilmu pengetahuan.'),
 (14, 4, 'Filosofi Teras', 'Henry Manampiring ', 'Kompas', '2018', 431, 'cover_1771984417_teras.jpg', 'Filosofi Teras adalah sebuah buku pengantar filsafat Stoa yang dibuat khusus sebagai panduan moral anak muda. Buku ini ditulis untuk menjawab masalah tentang tingkat kekhawatiran yang cukup tinggi dalam skala nasional, terutama yang dialami oleh anak muda. Filosofi Teras dibuat dengan kolaborasi beberapa pihak, seperti ilustrator, Levina Lesmana yang cukup berjasa dalam pembuatan sampul buku, dan si penulis, Henry Manampiring, yang terinspirasi dari buku How to be a Stoic karya Massimo Piggliuci, seorang penulis kenamaan Italia yang juga penganut Stoisisme. Buku ini dilengkapi dengan beberapa data seperti survei kekhawatiran nasional dan juga wawancara dari beberapa tokoh yang dianggap ahli dalam hal psikologi.'),
-(15, 4, 'Aku', 'Chairil Anwar', '-', '1943', 23, 'aku.jpg', 'Aku adalah sebuah puisi berbahasa Indonesia tahun 1943 karya Chairil Anwar, karya ini mungkin adalah karyanya yang paling terkenal dan juga salah satu puisi paling terkemuka dari Angkatan 45. Puisi ini menggambarkan alam individualistis dan vitalitasnya sebagai seorang penyair.');
+(15, 4, 'Aku', 'Chairil Anwar', '-', '1943', 23, 'aku.jpg', 'Aku adalah sebuah puisi berbahasa Indonesia tahun 1943 karya Chairil Anwar, karya ini mungkin adalah karyanya yang paling terkenal dan juga salah satu puisi paling terkemuka dari Angkatan 45. Puisi ini menggambarkan alam individualistis dan vitalitasnya sebagai seorang penyair.'),
+(16, 3, 'Jokowi Si Tukang Kayu', 'Gatotkoco Suroso', '-', '2006', 67, 'cover_1774851484_download (12).jpg', '\"Jokowi Si Tukang Kayu\" adalah sebuah novel inspiratif karya Gatotkoco Suroso yang menceritakan perjalanan hidup Joko Widodo, mulai dari masa kecil di bantaran kali, bekerja sebagai tukang kayu, hingga menjadi Walikota Solo. Buku ini menonjolkan nilai-nilai karakter, kerja keras, kemandirian, dan kisah romansa masa muda Jokowi. '),
+(19, 3, 'Petuangan Jokowi', 'Pria Solo', 'PDI', '2014', 45, 'download (12).jpg', 'Hidup Jokowi!!!');
 
 -- --------------------------------------------------------
 
@@ -122,6 +124,7 @@ CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_buku` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
   `tanggal_pinjam` date NOT NULL,
   `tanggal_kembali` date DEFAULT NULL,
   `total_denda` int(11) DEFAULT 0,
@@ -132,8 +135,9 @@ CREATE TABLE `transaksi` (
 -- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `id_buku`, `tanggal_pinjam`, `tanggal_kembali`, `total_denda`, `status`) VALUES
-(21, 3, 14, '2026-03-30', '2026-04-03', 0, 'dipinjam');
+INSERT INTO `transaksi` (`id_transaksi`, `id_user`, `id_buku`, `jumlah`, `tanggal_pinjam`, `tanggal_kembali`, `total_denda`, `status`) VALUES
+(34, 2, 15, 5, '2026-03-31', '2026-04-01', 0, 'dipinjam'),
+(42, 3, 16, 1, '2026-04-01', '2026-04-03', 0, 'dikembalikan');
 
 -- --------------------------------------------------------
 
@@ -243,7 +247,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `denda`
@@ -273,7 +277,7 @@ ALTER TABLE `respon_ulasan`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT untuk tabel `ulasan`
