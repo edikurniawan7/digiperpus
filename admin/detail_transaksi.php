@@ -27,7 +27,11 @@ session_start();
             exit;
         }
 
+<<<<<<< HEAD
         // Query untuk mengambil detail transaksi dengan join ke tabel buku dan users
+=======
+        // Fetch transaction details from database
+>>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
         $query = "SELECT t.*, b.judul, b.pengarang, u.nama
                   FROM transaksi t 
                   JOIN buku b ON t.id_buku = b.id_buku 
@@ -45,7 +49,11 @@ session_start();
             exit;
         }
 
+<<<<<<< HEAD
         // Update status transaksi jika form disubmit
+=======
+        // Handle status update
+>>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $status_baru = $_POST['status'] ?? '';
             

@@ -21,12 +21,16 @@ session_start();
     
     <!-- Konten Utama -->
     <main class="flex-1 ml-64 p-8 mt-20">
+<<<<<<< HEAD
         <h1 class="text-2xl font-bold text-gray-800">
         Daftar Anggota
     </h1>
     <p class="text-gray-600 mb-6 text-sm">
         Berikut adalah daftar anggota yang terdaftar dalam sistem.
     </p>
+=======
+        <h1 class="text-2xl font-bold text-blue-600 mb-6">Daftar Anggota</h1>
+>>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
 
         <div class="bg-white p-6 rounded-lg shadow-sm">
             <!-- Filter & Search -->
@@ -69,7 +73,11 @@ session_start();
                                     <a href="edit_anggota.php?id=<?= $row['id_user']; ?>" class="mr-2 bg-blue-100 border border-blue-500 rounded-lg px-3 py-1 text-blue-600 hover:bg-blue-200 transition">
                                         Edit
                                     </a>
+<<<<<<< HEAD
                                     <button onclick="hapusAnggota('<?= $row['id_user']; ?>')" class="bg-red-100 border border-red-500 rounded-lg px-2 py-1 text-red-600 hover:bg-red-200 transition">
+=======
+                                    <button onclick="hapusAnggota('<?= $row['id_user']; ?>')" class="bg-red-100 border border-red-500 rounded-lg px-2 py-1 text-red-600 hover:bg-red-700 transition">
+>>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
                                         Hapus
                                     </button>
                                 </td>
