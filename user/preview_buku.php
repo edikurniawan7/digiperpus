@@ -23,10 +23,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 $buku = $result->fetch_assoc();
 
-<<<<<<< HEAD
-=======
-//ambi
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
 if (!$buku) {
     header("Location: daftar_buku.php");
     exit;
@@ -46,7 +42,6 @@ if (!$buku) {
     <?php include 'partials/sidebar.php'; ?>
 
     <main class="flex-1 ml-64 p-8 mt-20">
-<<<<<<< HEAD
          <h1 class="text-2xl font-bold text-gray-800 mb-6">Pinjam Buku</h1>
 
 
@@ -88,56 +83,12 @@ if (!$buku) {
             <div class="mt-6">
                 <h3 class="text-lg font-bold text-gray-900 mb-3">Deskripsi</h3>
                 <p class="text-gray-700 leading-relaxed text-sm">
-=======
-        <h2 class="text-xl font-bold text-gray-700 mb-4">Preview Buku</h2>
-
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Book Cover -->
-                <div class="flex justify-center">
-                    <img src="<?php echo htmlspecialchars($buku['cover']); ?>" alt="Cover Buku" class="rounded-lg shadow-md w-full max-w-xs">
-                </div>
-
-                <!-- Book Details -->
-                <div class="md:col-span-2">
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2"><?php echo htmlspecialchars($buku['judul']); ?></h1>
-                    <p class="text-lg text-teal-600 font-semibold mb-4"><?php echo htmlspecialchars($buku['pengarang']); ?></p>
-                    
-                    <div class="space-y-4 mb-6">
-                        <div class="border-b pb-3">
-                            <p class="text-sm text-gray-600 font-semibold">Penerbit</p>
-                            <p class="text-gray-800"><?php echo htmlspecialchars($buku['penerbit']); ?></p>
-                        </div>
-                        <div class="border-b pb-3">
-                            <p class="text-sm text-gray-600 font-semibold">Tahun Terbit</p>
-                            <p class="text-gray-800"><?php echo $buku['tahun_terbit']; ?></p>
-                        </div>
-                        <div class="border-b pb-3">
-                            <p class="text-sm text-gray-600 font-semibold">Kategori</p>
-
-                            <p class="text-gray-800"><?php echo htmlspecialchars($buku['id_kategori']); ?></p>
-                        </div>
-                        <div class="border-b pb-3">
-                            <p class="text-sm text-gray-600 font-semibold">stok</p>
-                            <p class="text-gray-800"><?php echo htmlspecialchars($buku['stok']); ?></p>
-                        </div>
-                    </div>
-
-                    <a href="baca_buku.php?id_buku=<?php echo $id_buku; ?>" class="inline-block bg-teal-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-teal-700 transition">Baca Sekarang</a>
-            <?php echo htmlspecialchars($buku['file_pdf'] ?? ''); ?>
-            </div>
-
-            <!-- Description Section -->
-            <div class="mt-8 pt-8 border-t">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">Deskripsi</h2>
-                <p class="text-gray-700 leading-relaxed">
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
                     <?php echo nl2br(htmlspecialchars($buku['deskripsi'])); ?>
                 </p>
             </div>
         </div>
     </main>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    
 </body>
 </html>

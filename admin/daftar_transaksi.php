@@ -2,7 +2,6 @@
 include '../config.php';
 session_start();
 
-<<<<<<< HEAD
 // batasan untuk pagination
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
 $page  = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -13,8 +12,7 @@ if ($page <= 0) $page = 1;
 $start = ($page - 1) * $limit;
 
 // Query untuk mengambil data transaksi dengan join ke tabel buku dan users
-=======
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
+
 $query = mysqli_query($config, "
     SELECT 
         transaksi.*, 
@@ -24,7 +22,7 @@ $query = mysqli_query($config, "
     JOIN buku ON transaksi.id_buku = buku.id_buku
     JOIN users ON transaksi.id_user = users.id_user
     ORDER BY transaksi.id_transaksi DESC
-<<<<<<< HEAD
+
     LIMIT $start, $limit
 ");
 
@@ -36,9 +34,6 @@ $total_pages = ceil($total_data / $limit);
 if ($page > $total_pages) {
     $page = $total_pages;
 }
-=======
-");
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +51,6 @@ if ($page > $total_pages) {
 
 <main class="flex-1 ml-64 p-8 mt-20">
 
-<<<<<<< HEAD
 <h1 class="text-2xl font-bold text-gray-800">
         Daftar Peminjaman
     </h1>
@@ -69,21 +63,11 @@ if ($page > $total_pages) {
     <!-- SEARCH dan PAGINATION -->
     <div class="flex items-center gap-4 flex-wrap mb-6">
          <a href="tambah_transaksi.php" class="bg-blue-100 border border-blue-500 rounded-lg px-3 py-2 text-xs text-blue-600 transition">
-=======
-<h1 class="text-2xl font-bold text-blue-600 mb-6">Daftar Peminjaman</h1>
-
-<div class="bg-white p-6 rounded-lg shadow-sm">
-
-    <!-- SEARCH -->
-    <div class="flex items-center gap-4 flex-wrap mb-6">
-        <a href="tambah_transaksi.php" class="bg-blue-100 border border-blue-500 rounded-lg px-3 py-2 text-xs text-blue-600 transition">
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
             + Tambah Peminjaman
         </a>
         <form onsubmit="return false;" class="flex items-center gap-3 flex-1 min-w-max">
             <input name="search" placeholder="Cari nama anggota..." type="text" class="flex-1 bg-white px-3 py-2 text-xs border border-gray-400 rounded-full focus:outline-none focus:border-blue-500 transition">
         </form>
-<<<<<<< HEAD
         <select onchange="changeLimit(this.value)"
             class="text-xs font-semibold">
 
@@ -95,10 +79,6 @@ if ($page > $total_pages) {
     </div>
 
 
-=======
-    </div>
-
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
     <!-- TABLE -->
     <div class="overflow-x-auto">
         <table class="w-full text-xs border-collapse">
@@ -160,7 +140,6 @@ if ($page > $total_pages) {
         Transaksi tidak ditemukan
     </div>
 
-<<<<<<< HEAD
     <!-- PAGINATION -->
     <div class="flex justify-between items-center mt-6 text-xs">
 
@@ -209,21 +188,5 @@ if ($page > $total_pages) {
         window.location.href = `?page=1&limit=${limit}`;
     }
 </script>
-=======
-</div>
-</main>
-
-<script>
-    function hapusTransaksi(id) {
-        if(confirm('Yakin ingin menghapus transaksi ini?')) {
-            window.location.href = 'hapus_transaksi.php?id=' + id;
-        }
-    }
-</script>
-
-<!-- JS FILTER -->
-<script src="../assets/js/peminjaman-filter.js"></script>
-
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
 </body>
 </html>

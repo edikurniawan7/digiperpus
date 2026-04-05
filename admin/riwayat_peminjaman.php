@@ -23,18 +23,15 @@ session_start();
     
     <!-- Konten Utama -->
     <main class="flex-1 ml-64 p-8 mt-20 ">
-<<<<<<< HEAD
         <h1 class="text-2xl font-bold text-gray-800">
             Riwayat Peminjaman
         </h1>
         <p class="text-gray-600 mb-6 text-sm">
             Berikut adalah riwayat peminjaman buku yang telah dilakukan oleh anggota.
         </p>
-=======
         <h1 class="text-2xl font-bold text-blue-600 mb-6">
             Daftar Peminjaman
         </h1>
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
         <!-- Tabel Data  -->
         
     </main>
