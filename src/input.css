@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* FONT */
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/Inter-Italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* THEME */
+@theme {
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --color-blue-primary: #3b82f6;
+    --color-blue-secondary: #0065F8;
+    --color-teal-primary: #0d9488;
+    --color-teal-secondary: #14b8a6;
+    --color-cyan-accent: #0bbee0;
+    --color-gray-light: #f8fafc;
+    --color-emerald-accent: #10b981;
+}
