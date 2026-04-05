@@ -73,10 +73,7 @@
                                min="1" 
                                max="<?= $buku['stok']; ?>" 
                                value="1"
-<<<<<<< HEAD
                                onchange="if(this.value > <?= $buku['stok']; ?>) { alert('Jumlah melebihi stok tersedia!'); this.value = <?= $buku['stok']; ?>; }"
-=======
->>>>>>> 689875abed4c8ff882dfb89705d62e0fa103442f
                                class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
                                required>
                     </div>
