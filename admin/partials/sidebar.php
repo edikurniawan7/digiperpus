@@ -45,10 +45,10 @@ $menu_items = [
 <!-- Sidebar -->
 <aside id="top-bar-sidebar" class="fixed top-0 left-0 w-64 h-full bg-blue-secondary text-white shadow-lg transform -translate-x-full lg:translate-x-0 transition-transform z-30">
     <div class="p-6">
-        <a href="dashboard_admin.php" class="flex items-center gap-3 mb-10">
-            <img src="../assets/img/logo_title.png" alt="Logo" class="w-8 h-8">
-            <span class="text-xl font-bold">Digiperpus</span>
-        </a>    
+        <!-- Logo -->
+        <div class="flex items-center justify-center border-b border-white mb-10">
+            <img src="../assets/img/logo_digiperpus1.png" alt="Logo DigiPerpus" class="h-14 w-40 rounded-3xl object-cover">
+        </div> 
         <!-- Menu Items -->
         <ul class="space-y-2 font-medium mt-10 ml-2">
             <?php foreach($menu_items as $item): ?>

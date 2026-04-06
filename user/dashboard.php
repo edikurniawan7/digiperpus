@@ -49,19 +49,62 @@
         </div>
 
         <!-- Aktivitas Terbaru -->
-        <div class="mb-6">
-            <div class="bg-white p-8 rounded-lg shadow-sm relative overflow-hidden">
-                <h2 class="text-xl font-bold text-blue-secondary mt-1 mb-4">Aktivitas Terbaru</h2>
-                <div class="bg-teal-primary rounded-lg shadow-lg relative overflow-hidden">
-                    
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">
+                Aktivitas Terbaru
+            </h3>
+            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-lg border-l-4 border-cyan-accent">
+                <div class="bg-cyan-accent/20 p-3 rounded-lg">
+                    <img src="../assets/img/book.png" class="w-6 h-6">
+                </div>
+                <div>
+                    <p class="text-sm text-gray-500">Belum ada aktivitas terbaru</p>
                 </div>
             </div>
         </div>
 
+        <h1 class="text-2xl font-bold text-gray-800">
+            Daftar Buku 
+        </h1>
+        <p class="text-gray-600 mb-6 text-sm">
+            Berikut adalah daftar buku yang tersedia di perpustakaan.
+        </p>
 
+        <!-- FILTER & SEARCH -->
+    <div class="bg-white p-6 rounded-lg mb-6">
+        <div class="flex items-center gap-4 flex-wrap">
+            <form onsubmit="return false;" class="flex items-center gap-3 flex-1 min-w-max">
+            <input 
+                name="search"
+                placeholder="Cari judul / pengarang..."
+                type="text"
+                class="flex-1 bg-white px-3 py-2 text-xs border border-gray-400 rounded-full focus:outline-none focus:border-blue-500 transition"
+            >
 
-<div class="mb-6">
-    <h2 class="text-xl font-bold text-blue-secondary mb-4">Rekomendasi Buku Hari Ini</h2>
+                <select name="kategori"
+                        class="text-xs font-semibold">
+
+                    <option value="">Semua Kategori</option>
+
+                    <?php
+                        $kategori_query = mysqli_query($config, "SELECT * FROM kategori ORDER BY nama_kategori ASC");
+                        while($kategori = mysqli_fetch_array($kategori_query)):
+                    ?>
+                        <option value="<?= $kategori['id_kategori']; ?>">
+                            <?= $kategori['nama_kategori']; ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+
+            </form>
+        </div>
+        <div id="empty-message"class="hidden text-center text-xs text-gray-500 font-medium mt-6">
+            Buku tidak ditemukan
+        </div>
+    </div>
+
+    <!-- Daftar Buku -->
+    <div class="mb-6">
     <div id="buku-container" class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         <?php
             $query = mysqli_query($config, "SELECT * FROM buku ORDER BY RAND()");
@@ -102,8 +145,9 @@
     </div>
 </div>
 
+</main>
 
-
-    </main>
+<!-- JS FILTER -->
+<script src="../assets/js/buku-filter.js"></script>
 </body>
 </html>

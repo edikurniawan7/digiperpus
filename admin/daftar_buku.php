@@ -50,7 +50,7 @@ session_start();
             >
 
                 <select name="kategori"
-                        class="text-xs font-semibold text-gray-700 px-3 py-2 border border-gray-400 rounded-full focus:outline-none">
+                        class="text-xs font-semibold">
 
                     <option value="">Semua Kategori</option>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Digiperpus</title>
+    <title>Login - Digiperpus</title>
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <link href="../src/output.css" rel="stylesheet">
 </head>
@@ -23,6 +23,11 @@
         <!-- Form Login -->
         <div class="bg-white p-12 rounded-2xl shadow-lg">
             <form method="post" action="../aksi/aksi_login.php" id="loginForm" class="space-y-6 ">
+                <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+                    <script>
+                        alert("Registrasi berhasil! Silakan login.");
+                    </script>
+                <?php endif; ?>
             
             <!-- Kolom Username -->
             <div>
@@ -86,11 +91,16 @@
 
             </form>
             <!-- Pesan Error -->
-            <?php if (isset($_GET['pesan']) && $_GET['pesan'] == "gagal"): ?>
-                <div class="mt-4 text-red-600 text-sm text-center">
-                    Username atau password salah.
-                </div>
-            <?php endif; ?>
+            <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+<script>
+Swal.fire({
+    title: 'Berhasil!',
+    text: 'Registrasi berhasil, silakan login.',
+    icon: 'success',
+    confirmButtonText: 'OK'
+});
+</script>
+<?php endif; ?>
 
         </div>
 

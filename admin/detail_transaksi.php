@@ -60,10 +60,13 @@ session_start();
         }
         ?>
 
-        <!-- Header -->
-        <div class="bg-blue-500 rounded-t-2xl shadow p-4 flex justify-center">
-            <h1 class="text-2xl font-bold text-white">Detail Peminjaman</h1>
-        </div>
+        <h1 class="text-2xl font-bold text-gray-800">
+            Detail Peminjaman
+        </h1>
+        <p class="text-gray-600 mb-6 text-sm">
+            Detail peminjaman buku yang sedang berlangsung.
+        </p>
+        
 
         <!-- Content -->
         <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -108,7 +111,6 @@ session_start();
                 <select name="status" class="border border-gray-300 rounded-lg px-3 py-2 text-xs">
                     <option value="Dipinjam" <?= $transaksi['status'] == 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
                     <option value="Dikembalikan" <?= $transaksi['status'] == 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
-                    <option value="Hilang" <?= $transaksi['status'] == 'Hilang' ? 'selected' : '' ?>>Hilang</option>
                 </select>
                 </div>
                 <button type="submit" class="bg-blue-500 rounded-lg  text-white px-3 py-2 text-xs hover:bg-blue-600">

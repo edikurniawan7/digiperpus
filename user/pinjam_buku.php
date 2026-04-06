@@ -31,7 +31,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinjam Buku | Sistem Peminjaman Buku</title>
+    <title>Pinjam Buku - <?php echo htmlspecialchars($buku['judul']); ?></title>
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <link href="../src/output.css" rel="stylesheet">    
 </head>
@@ -117,7 +117,7 @@
                             Batal
                         </button>
                         <button type="submit" 
-                                class="ml-auto px-4 py-2 text-sm font-medium text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition">
+                                class="ml-auto px-4 py-2 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition">
                             Pinjam Buku
                         </button>
                     </div>

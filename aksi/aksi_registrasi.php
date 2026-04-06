@@ -4,34 +4,41 @@ session_start();
 include '../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama = $_POST['nama'];
-    $username = $_POST['username'];
+    $nama = mysqli_real_escape_string($config, $_POST['nama']);
+    $username = mysqli_real_escape_string($config, $_POST['username']);
     $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    // Cek apakah username sudah ada
+    // Validasi konfirmasi password
+    if ($password !== $confirm_password) {
+        header("Location: ../auth/registrasi.php?error=3");
+        exit();
+    }
+
+    // Cek username sudah ada atau belum
     $checkQuery = "SELECT * FROM users WHERE username = '$username'";
     $checkResult = mysqli_query($config, $checkQuery);
 
     if (mysqli_num_rows($checkResult) > 0) {
-        // Username sudah ada, redirect kembali dengan pesan error
         header("Location: ../auth/registrasi.php?error=1");
         exit();
     }
 
-    // Simpan data ke database
-    $insertQuery = "INSERT INTO users (nama, username, password) VALUES ('$nama', '$username', '$password')";
+    // Default role user
+    $role = 'user';
+
+    // Simpan ke database
+    $insertQuery = "INSERT INTO users (nama, username, password, role) 
+                    VALUES ('$nama', '$username', '$password', '$role')";
     
     if (mysqli_query($config, $insertQuery)) {
-        // Registrasi berhasil, redirect ke halaman login
         header("Location: ../auth/login.php?success=1");
         exit();
     } else {
-        // Terjadi kesalahan saat menyimpan data
         header("Location: ../auth/registrasi.php?error=2");
         exit();
     }
 } else {
-    // Jika bukan POST request, redirect kembali ke halaman registrasi
     header("Location: ../auth/registrasi.php");
     exit();
 }

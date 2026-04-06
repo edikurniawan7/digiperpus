@@ -51,7 +51,7 @@ if ($page > $total_pages) {
 
 <main class="flex-1 ml-64 p-8 mt-20">
 
-<h1 class="text-2xl font-bold text-gray-800">
+    <h1 class="text-2xl font-bold text-gray-800">
         Daftar Peminjaman
     </h1>
     <p class="text-gray-600 mb-6 text-sm">

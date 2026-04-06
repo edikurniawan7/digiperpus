@@ -34,6 +34,7 @@ if (!$buku) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <title>Preview Buku - <?php echo htmlspecialchars($buku['judul']); ?></title>
     <link href="../src/output.css" rel="stylesheet"> 
 </head>
@@ -42,15 +43,11 @@ if (!$buku) {
     <?php include 'partials/sidebar.php'; ?>
 
     <main class="flex-1 ml-64 p-8 mt-20">
-         <h1 class="text-2xl font-bold text-gray-800 mb-6">Pinjam Buku</h1>
-
-
         <div class="max-w-2xl mx-auto bg-white rounded-lg shadow p-6">
             <!-- Detail Buku Ringkas -->
             <div class="flex gap-6 mb-6 pb-6 border-b">
                 <div class="w-32 flex-shrink-0">
-                    <img src="<?php echo htmlspecialchars($buku['cover']); ?>" 
-                         alt="Cover Buku" 
+                    <img src="../uploads/cover/<?= $buku['cover']; ?>" alt="<?= $buku['judul']; ?>" 
                          class="w-full rounded shadow-sm object-cover">
                 </div>
                 <div class="flex-1 text-sm">
@@ -71,20 +68,27 @@ if (!$buku) {
                             <p class="text-gray-800"><?php echo htmlspecialchars($buku['id_kategori']); // Consider fetching category name if needed ?></p>
                         </div>
                     </div>
-                    <div class="pt-4">
-                        <a href="baca_buku.php?id_buku=<?php echo $id_buku; ?>" class="inline-flex items-center bg-teal-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-teal-700 transition duration-300 shadow-md text-sm">
-                            Baca Sekarang
-                        </a>
-                    </div>
                 </div>
             </div>
 
             <!-- Description Section -->
-            <div class="mt-6">
+            <div class="mt-6 ">
                 <h3 class="text-lg font-bold text-gray-900 mb-3">Deskripsi</h3>
-                <p class="text-gray-700 leading-relaxed text-sm">
+                <p class="text-gray-700 leading-relaxed text-sm mb-6">
                     <?php echo nl2br(htmlspecialchars($buku['deskripsi'])); ?>
                 </p>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="flex items-center gap-3 pt-4 mt-6 border-t">
+                <button type="button" onclick="window.history.back()" 
+                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                    Batal
+                </button>
+                <a href="baca_buku.php?id=<?= $buku['id_buku']; ?>" 
+                    class="ml-auto px-4 py-2 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition">
+                    Baca Sekarang
+                </a>
             </div>
         </div>
     </main>

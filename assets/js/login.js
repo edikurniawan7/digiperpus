@@ -1,16 +1,24 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-    const eyeIcon = document.getElementById('eyeOffIcon');
-    const eyeOffIcon = document.getElementById('eyeIcon');
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = (btn, input, eye, eyeOff) => {
+        btn?.addEventListener('click', () => {
+            const hidden = input.type === 'password';
+            input.type = hidden ? 'text' : 'password';
+            eye.classList.toggle('hidden');
+            eyeOff.classList.toggle('hidden');
+        });
+    };
 
-    if (!togglePassword || !passwordInput || !eyeIcon || !eyeOffIcon) return;
+    toggle(
+        document.getElementById('togglePassword'),
+        document.getElementById('password'),
+        document.getElementById('eyeIcon'),
+        document.getElementById('eyeOffIcon')
+    );
 
-    togglePassword.addEventListener('click', function () {
-        const isPassword = passwordInput.type === 'password';
-        passwordInput.type = isPassword ? 'text' : 'password';
-
-        eyeIcon.classList.toggle('hidden');
-        eyeOffIcon.classList.toggle('hidden');
-    });
+    toggle(
+        document.getElementById('toggleConfirmPassword'),
+        document.getElementById('confirm_password'),
+        document.getElementById('eyeConfirmIcon'),
+        document.getElementById('eyeOffConfirmIcon')
+    );
 });

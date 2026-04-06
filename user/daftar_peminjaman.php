@@ -23,7 +23,8 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digiperpus | Peminjaman Saya</title>
+    <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
+    <title>Peminjaman Saya - Digiperpus</title>
     <link href="../src/output.css" rel="stylesheet"> 
 </head>
 
@@ -33,13 +34,13 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 
 <main class="flex-1 ml-64 p-8 mt-20">
 
-    <!-- TITLE -->
+    <!-- JUDUL -->
     <h1 class="text-2xl font-bold text-gray-800">
-            Riwayat Peminjaman
-        </h1>
-        <p class="text-gray-600 mb-6 text-sm">
-            Berikut adalah riwayat peminjaman buku yang telah dilakukan oleh anggota.
-        </p>
+        Daftar Peminjaman
+    </h1>
+    <p class="text-gray-600 mb-6 text-sm">
+        Berikut adalah daftar peminjaman buku yang sedang dipinjam.
+    </p>
 
     <!-- RINGKASAN -->
     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
@@ -135,12 +136,7 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
         } else {
         ?>
 
-        <!-- EMPTY STATE -->
-        <div class="col-span-full flex flex-col items-center justify-center py-20 text-gray-500">
-            <p class="text-lg font-medium">Belum ada peminjaman</p>
-            <p class="text-sm">Silakan melakukan peminjaman buku terlebih dahulu</p>
-        </div>
-
+        
         <?php } ?>
 
     </div>
