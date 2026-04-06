@@ -25,7 +25,7 @@ $data_kategori = mysqli_query(
     <script src="../assets/js/cover-preview.js"></script>
 </head>
 
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
     
