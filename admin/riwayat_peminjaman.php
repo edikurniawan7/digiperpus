@@ -29,9 +29,6 @@ session_start();
         <p class="text-gray-600 mb-6 text-sm">
             Berikut adalah riwayat peminjaman buku yang telah dilakukan oleh anggota.
         </p>
-        <h1 class="text-2xl font-bold text-blue-600 mb-6">
-            Daftar Peminjaman
-        </h1>
         <!-- Tabel Data  -->
         
     </main>
