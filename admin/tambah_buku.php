@@ -17,8 +17,6 @@ $data_kategori = mysqli_query(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <title>Tambah Buku | Digiperpus</title>
-    
-    <!-- Tailwind CSS -->
     <link href="../src/output.css" rel="stylesheet">
     
     <!-- JS Preview Cover -->
@@ -32,7 +30,7 @@ $data_kategori = mysqli_query(
     <!-- Main Content -->
     <main class="ml-64 p-6 mt-16">  
         <div class="max-w-2xl mx-auto">
-            <div class="mb-6">
+            <div class="mb-6 ">
                 <h1 class="text-2xl font-bold text-gray-800">Tambah Buku Baru</h1>
                 <p class="text-sm text-gray-500 mt-1">Lengkapi informasi buku di bawah ini</p>
             </div>

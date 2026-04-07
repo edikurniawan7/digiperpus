@@ -9,11 +9,12 @@ if (!isset($_SESSION['id_user'])) {
 
 $id_user = $_SESSION['id_user'];
 
-// HITUNG JUMLAH BUKU YANG SEDANG DIPINJAM
+// HITUNG BUKU YANG MASIH DI TANGAN USER
 $total_pinjam_query = mysqli_query($config, "
     SELECT COUNT(*) as total 
     FROM transaksi 
-    WHERE id_user = '$id_user' AND status = 'dipinjam'
+    WHERE id_user = '$id_user' 
+    AND (status = 'dipinjam' OR status = 'menunggu konfirmasi')
 ");
 $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 ?>
@@ -34,7 +35,6 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 
 <main class="flex-1 ml-64 p-8 mt-20">
 
-    <!-- JUDUL -->
     <h1 class="text-2xl font-bold text-gray-800">
         Daftar Peminjaman
     </h1>
@@ -54,7 +54,7 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
             </div>
 
             <div>
-                <p class="text-sm text-gray-500">Sedang Dipinjam</p>
+                <p class="text-sm text-gray-500">Sedang dipinjam</p>
                 <p class="text-xl font-bold text-gray-800">
                     <?= $total_pinjam; ?> Buku
                 </p>
@@ -62,7 +62,7 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
         </div>
     </div>
 
-    <!-- GRID CARD -->
+    <!-- GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         <?php
@@ -71,21 +71,28 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
             FROM transaksi
             JOIN buku ON transaksi.id_buku = buku.id_buku
             WHERE transaksi.id_user = '$id_user'
+            AND transaksi.status != 'dikembalikan'
             ORDER BY transaksi.id_transaksi DESC
         ");
 
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_assoc($query)) {
 
-                $statusColor = $row['status'] == 'dipinjam'
-                    ? 'bg-yellow-100 text-yellow-700'
-                    : 'bg-green-100 text-green-700';
+                $status = $row['status'];
+
+                // WARNA STATUS
+                if ($status == 'dipinjam') {
+                    $statusColor = 'bg-yellow-100 text-yellow-700';
+                } elseif ($status == 'menunggu konfirmasi') {
+                    $statusColor = 'bg-blue-100 text-blue-700';
+                } else {
+                    $statusColor = 'bg-green-100 text-green-700';
+                }
 
                 $tanggalPinjam = date('d M Y', strtotime($row['tanggal_pinjam']));
                 $tanggalKembali = date('d M Y', strtotime($row['tanggal_kembali']));
         ?>
 
-        <!-- CARD -->
         <div class="bg-white rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition group overflow-hidden">
 
             <!-- HEADER -->
@@ -97,8 +104,9 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 
             <!-- BODY -->
             <div class="p-4 space-y-2 text-xs text-gray-600">
+
                 <div class="flex justify-between">
-                    <span class="font-medium text-gray-500">Jumlah Dipinjam</span>
+                    <span class="font-medium text-gray-500">Jumlah dipinjam</span>
                     <span><?= $row['jumlah'] ?></span>
                 </div>
 
@@ -114,16 +122,27 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 
                 <div class="flex justify-between items-center mt-3">
 
+                    <!-- STATUS -->
                     <span class="px-2 py-1 text-[10px] font-semibold rounded-full <?= $statusColor ?>">
-                        <?= ucfirst($row['status']) ?>
+                        <?= ucfirst($status) ?>
                     </span>
 
-                    <?php if ($row['status'] == 'dipinjam') { ?>
-                        <a href="../aksi/aksi_kembalikan.php?id=<?= $row['id_transaksi']; ?>" 
+                    <!-- AKSI -->
+                    <?php if ($status == 'dipinjam') { ?>
+                        <a href="../aksi/request_kembali.php?id=<?= $row['id_transaksi']; ?>" 
                            class="text-[10px] bg-blue-100 border border-blue-500 px-2 py-1 rounded hover:bg-blue-200 transition"
-                           onclick="return confirm('Yakin ingin mengembalikan buku ini?');">
-                            Kembalikan
+                           onclick="return confirm('Ajukan pengembalian buku ini?');">
+                            Ajukan Pengembalian
                         </a>
+
+                    <?php } elseif ($status == 'menunggu konfirmasi') { ?>
+
+                        <!-- MINI INDICATOR (lebih elegan dari text panjang) -->
+                        <div class="flex items-center gap-1 text-[10px] text-blue-500">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                            <span>Diproses</span>
+                        </div>
+
                     <?php } ?>
 
                 </div>
@@ -135,8 +154,7 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
             }
         } else {
         ?>
-
-        
+            <p class="text-gray-500 text-sm">Tidak ada data peminjaman.</p>
         <?php } ?>
 
     </div>

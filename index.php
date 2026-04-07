@@ -306,7 +306,7 @@ $q_buku_terbaru = mysqli_query($config, "
                     <!-- Action -->
                     <div class="flex gap-2 mt-auto">
 
-                        <a href="public/detail_buku.php?= $buku['id_buku']; ?>"
+                        <a href="public/detail_buku.php?id=<?= $buku['id_buku']; ?>"
                            class="flex-1 bg-blue-600 text-white px-2 py-1 rounded-lg text-center text-sm hover:bg-blue-500 transition">
                             Detail
                         </a>

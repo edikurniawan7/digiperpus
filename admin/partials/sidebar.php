@@ -31,6 +31,22 @@ $menu_items = [
         <p class="text-xs lg:text-sm text-gray-500">Digiperpus | Sistem Peminjaman Buku</p>
     </div>
 
+    <!-- Notifikasi -->
+    <div class="hidden lg:flex items-center gap-4">
+        <a href="daftar_transaksi.php" class="relative">
+            <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5">
+            <?php
+                $notif_query = mysqli_query($config, "SELECT COUNT(*) AS total FROM transaksi WHERE status = 'menunggu konfirmasi'");
+                $notif_count = mysqli_fetch_array($notif_query)['total'];
+                if ($notif_count > 0):
+            ?>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
+                <?= $notif_count; ?>
+            </span>
+            <?php endif; ?>
+        </a>
+        </div>
+
     <div class="flex items-center gap-2 lg:gap-4">
         <div class="hidden sm:block text-right">
             <p class="text-xs lg:text-sm font-semibold text-gray-700"><?= $_SESSION['nama'] ?? 'Admin'; ?></p>
