@@ -12,22 +12,17 @@ if ($page <= 0) $page = 1;
 $start = ($page - 1) * $limit;
 
 // Query untuk mengambil data transaksi dengan join ke tabel buku dan users
-
 $query = mysqli_query($config, "
-    SELECT 
-        transaksi.*, 
-        buku.judul, 
-        users.nama
-    FROM transaksi
-    JOIN buku ON transaksi.id_buku = buku.id_buku
-    JOIN users ON transaksi.id_user = users.id_user
-    ORDER BY transaksi.id_transaksi DESC
-
-    LIMIT $start, $limit
+    SELECT t.*, b.judul, u.nama 
+    FROM transaksi t
+    JOIN buku b ON t.id_buku = b.id_buku
+    JOIN users u ON t.id_user = u.id_user
+    WHERE t.status = 'Dipinjam'
+    ORDER BY t.id_transaksi DESC
 ");
 
 // Hitung total data untuk pagination
-$total_query = mysqli_query($config, "SELECT COUNT(*) as total FROM transaksi");
+$total_query = mysqli_query($config, "SELECT COUNT(*) as total FROM transaksi WHERE status = 'Dipinjam'");
 $total_data = mysqli_fetch_assoc($total_query)['total'];
 $total_pages = ceil($total_data / $limit);
 
