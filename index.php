@@ -395,46 +395,45 @@ $q_buku_terbaru = mysqli_query($config, "
                     <!-- Email -->
                     <div>
                         <h3 class="text-sm font-semibold text-gray-700">Email</h3>
-                        <p class="text-sm text-gray-600">digiperpus@email.com</p>
+                        <p class="text-sm text-gray-600">digiperpus577@email.com</p>
                     </div>
 
                     <!-- Phone -->
                     <div>
                         <h3 class="text-sm font-semibold text-gray-700">Telepon</h3>
-                        <p class="text-sm text-gray-600">0812-3456-7890</p>
+                        <p class="text-sm text-gray-600">0821-6451-2787</p>
                     </div>
 
                     <!-- Address -->
                     <div>
                         <h3 class="text-sm font-semibold text-gray-700">Alamat</h3>
-                        <p class="text-sm text-gray-600">Indonesia</p>
+                        <p class="text-sm text-gray-600">Garut, Jawa Barat</p>
                     </div>
                 </div>
 
                 <form id="contactForm" class="space-y-4">
-                    <div>
-                        <input type="text" name="nama" placeholder="Nama"
-                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
-                    </div>
+    <div>
+        <input type="text" name="nama" placeholder="Nama" required
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
+    </div>
 
-                    <div>
-                        <input type="email" name="email" placeholder="Email"
-                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
-                    </div>
+    <div>
+        <input type="email" name="email" placeholder="Email" required
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
+    </div>
 
-                    <div>
-                        <textarea name="pesan" rows="4" placeholder="Pesan"
-                        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary"></textarea>
-                    </div>
+    <div>
+        <textarea name="pesan" rows="4" placeholder="Pesan" required
+        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary"></textarea>
+    </div>
 
-                    <button type="submit"
-                    class="w-full bg-blue-secondary text-white text-sm py-2 rounded-md hover:bg-blue-primary transition">
-                        Kirim Pesan
-                    </button>
+    <button id="submitBtn" type="submit"
+    class="w-full bg-blue-secondary text-white text-sm py-2 rounded-md hover:bg-blue-primary transition">
+        Kirim Pesan
+    </button>
 
-                    <!-- Feedback -->
-                    <p id="formMessage" class="text-sm text-center mt-2"></p>
-                </form>
+    <p id="formMessage" class="text-sm text-center mt-2"></p>
+</form>
             </div>
 
             <!-- Google Maps Embed Full Width -->
@@ -483,6 +482,7 @@ $q_buku_terbaru = mysqli_query($config, "
         </div>
     </footer>
      <!-- JavaScript -->
+    <script src="assets/js/kontak.js"></script>
 <script>
     // 1. SMOOTH SCROLL
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
