@@ -7,17 +7,14 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-
-
-$id_user = $_SESSION['id_user'];
-$id_buku = isset($_GET['id_buku']) ? $_GET['id_buku'] : null;
+$id_buku = isset($_GET['id']) ? $_GET['id'] : null;
 
 if (!$id_buku) {
     header("Location: daftar_buku.php");
     exit;
 }
 
-// Query data buku dari database
+// ambil data buku
 $query = "SELECT * FROM buku WHERE id_buku = ?";
 $stmt = $config->prepare($query);
 $stmt->bind_param("i", $id_buku);
@@ -30,10 +27,17 @@ if (!$buku) {
     exit;
 }
 
-// Asumsikan file PDF disimpan di folder 'uploads/' atau sesuai dengan path di database
-$file_pdf = $buku['file_pdf'];
-if (!$file_pdf || !file_exists('../' . $file_pdf)) {
-    echo "File PDF belum diunggah.";
+// path file PDF
+$file = "../uploads/e-book/" . $buku['file_buku'];
+
+// Cek apakah file ada
+if (!file_exists($file) || empty($buku['file_buku'])) {
+    $file = null; 
+}
+
+// Jika file belum diunggah, kita akan menampilkan pesan di dalam iframe nanti
+if (!file_exists($file)) {
+    echo "File belum diunggah!";
     exit;
 }
 ?>
@@ -42,22 +46,48 @@ if (!$file_pdf || !file_exists('../' . $file_pdf)) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baca Buku - <?php echo htmlspecialchars($buku['judul']); ?></title>
-    <link href="../src/output.css" rel="stylesheet"> 
+    <title>Baca Buku - <?= htmlspecialchars($buku['judul']); ?></title>
+    <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
+    <link href="../src/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
-    <?php include 'partials/sidebar.php'; ?>
+<body class="bg-gray-100">
 
-    <main class="flex-1 ml-64 p-8 mt-20">
-        <h2 class="text-xl font-bold text-gray-700 mb-4">Baca Buku: <?php echo htmlspecialchars($buku['judul']); ?></h2>
+<!-- HEADER -->
+<div class="bg-white shadow px-6 py-4 flex items-center justify-between">
+    <h1 class="text-lg font-semibold text-gray-800">
+        <?= htmlspecialchars($buku['judul']); ?>
+    </h1>
 
-        <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-            <embed src="<?php echo htmlspecialchars('../' . $file_pdf); ?>" type="application/pdf" width="100%" height="600px" />
-        </div>
-    </main>
+    <a href="preview_buku.php?id_buku=<?= $buku['id_buku']; ?>" 
+       class="text-sm px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+        ← Kembali
+    </a>
+</div>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<!-- PDF VIEWER -->
+<div class="w-full h-[calc(100vh-70px)]">
+    <iframe 
+        src="<?= $file; ?>" 
+        class="w-full h-full"
+        frameborder="0">
+    </iframe>
+</div>
+
+<!-- Jika file belum diunggah -->
+<div id="file-not-found" class="hidden w-full h-[calc(100vh-70px)] flex items-center justify-center bg-white">
+    <p class="text-gray-500 text-lg">File buku belum diunggah.</p>
+</div>
+<script>
+    const iframe = document.querySelector('iframe');
+    const fileNotFound = document.getElementById('file-not-found');
+
+    iframe.addEventListener('error', () => {
+        iframe.style.display = 'none';
+        fileNotFound.classList.remove('hidden');
+    });
+</script>
+
+
 </body>
 </html>

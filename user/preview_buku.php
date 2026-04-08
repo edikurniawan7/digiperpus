@@ -81,12 +81,12 @@ if (!$buku) {
 
             <!-- Tombol Aksi -->
             <div class="flex items-center gap-3 pt-4 mt-6 border-t">
-                <button type="button" onclick="window.history.back()" 
-                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition">
-                    Batal
-                </button>
+                <a href="dashboard.php?id_buku=<?= $buku['id_buku']; ?>" 
+                    class="text-sm px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                    ← Kembali
+                </a>
                 <a href="baca_buku.php?id=<?= $buku['id_buku']; ?>" 
-                    class="ml-auto px-4 py-2 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition">
+                    class="ml-auto px-3 py-2 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition">
                     Baca Sekarang
                 </a>
             </div>

@@ -17,12 +17,12 @@ $query = mysqli_query($config, "
     FROM transaksi t
     JOIN buku b ON t.id_buku = b.id_buku
     JOIN users u ON t.id_user = u.id_user
-    WHERE t.status = 'Dipinjam'
+    WHERE t.status = 'dipinjam' OR t.status = 'menunggu konfirmasi'
     ORDER BY t.id_transaksi DESC
 ");
 
-// Hitung total data untuk pagination
-$total_query = mysqli_query($config, "SELECT COUNT(*) as total FROM transaksi WHERE status = 'Dipinjam'");
+// Hitung total data (yang statusnya 'dipinjam' atau 'menunggu konfirmasi') untuk pagination
+$total_query = mysqli_query($config, "SELECT COUNT(*) as total FROM transaksi WHERE status = 'dipinjam' OR status = 'menunggu konfirmasi'");
 $total_data = mysqli_fetch_assoc($total_query)['total'];
 $total_pages = ceil($total_data / $limit);
 
@@ -109,9 +109,11 @@ if ($page > $total_pages) {
 
                     <td class="px-4 py-3">
                         <?php if($t['status'] == 'dipinjam'): ?>
-                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Dipinjam</span>
+                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Dipinjam</span>
+                        <?php elseif($t['status'] == 'menunggu konfirmasi'): ?>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">Menunggu Konfirmasi</span>
                         <?php else: ?>
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Dikembalikan</span>
+                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Dikembalikan</span>
                         <?php endif; ?>
                     </td>
 

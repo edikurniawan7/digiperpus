@@ -103,12 +103,19 @@ $data_kategori = mysqli_query(
                         <textarea name="deskripsi" id="deskripsi" rows="3" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
                     </div>
 
+                    <!-- File pdf (jika ada) -->
+                    <div class="mb-6">
+                        <label for="file_buku" class="block  text-sm font-semibold text-gray-700 mb-1">File E-Book (PDF)</label>
+                        <input type="file" name="file_buku" accept="application/pdf" class="text-sm text-gray-600 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <p class="text-xs text-gray-500 mt-2">Format: PDF (Maks: 10MB)</p>
+                    </div>
+
                     <!-- Action Buttons -->
                     <div class="flex gap-3 justify-end pt-4 border-t border-gray-200">
-                        <button type="button" onclick="window.history.back()" class="px-3 py-1 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                        <button type="button" onclick="window.history.back()" class="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                             Batal
                         </button>
-                        <button type="submit" class="px-3 py-1 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition-colors">
+                        <button type="submit" class="px-3 py-2 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition-colors">
                             Simpan Buku
                         </button>
                     </div>

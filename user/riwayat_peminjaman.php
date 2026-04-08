@@ -42,14 +42,14 @@
                 <img src="../assets/img/pinjam.png" class="w-6 h-6">
             </div>
             <div>
-                <p class="text-sm text-gray-500">Total Peminjaman</p>
+                <p class="text-sm text-gray-500">Total peminjaman yang telah dikembalikan</p>
                 <p class="text-xl font-bold text-gray-800">
                     <?php
                     $id_user = $_SESSION['id_user'];
                     $total_pinjam_query = mysqli_query($config, "
                         SELECT COUNT(*) as total 
                         FROM transaksi 
-                        WHERE id_user = '$id_user' AND status = 'dipinjam'
+                        WHERE id_user = '$id_user' AND status = 'dikembalikan'
                     ");
                     $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
                     echo $total_pinjam . " Buku";
@@ -57,7 +57,82 @@
                 </p>
             </div>
         </div>
+         </div>
 
+        <!-- GRID -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <?php
+        $query = mysqli_query($config, "
+            SELECT transaksi.*, buku.judul 
+            FROM transaksi
+            JOIN buku ON transaksi.id_buku = buku.id_buku
+            WHERE transaksi.id_user = '$id_user'
+            AND transaksi.status != 'dipinjam'
+            AND transaksi.status != 'menunggu konfirmasi'
+            ORDER BY transaksi.id_transaksi DESC
+        ");
+
+        if (mysqli_num_rows($query) > 0) {
+            while ($row = mysqli_fetch_assoc($query)) {
+
+                $status = $row['status'];
+
+                // WARNA STATUS
+                if ($status == 'dipinjam') {
+                    $statusColor = 'bg-green-100 text-green-700';
+                } elseif ($status == 'dikembalikan') {
+                    $statusColor = 'bg-blue-100 text-blue-700';
+                } else {
+                    $statusColor = 'bg-yellow-100 text-yellow-700';
+                }
+
+                $tanggalPinjam = date('d M Y', strtotime($row['tanggal_pinjam']));
+                $tanggalKembali = date('d M Y', strtotime($row['tanggal_kembali']));
+        ?>
+
+        <div class="bg-white rounded-lg shadow-md border border-gray-100 hover:shadow-lg transition group overflow-hidden">
+
+            <!-- HEADER -->
+            <div class="p-4 border-b bg-gradient-to-r from-gray-50 to-gray-100">
+                <h2 class="text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-blue-secondary transition">
+                    <?= $row['judul'] ?>
+                </h2>
+            </div>
+
+            <!-- BODY -->
+            <div class="p-4 space-y-2 text-xs text-gray-600">
+
+                <div class="flex justify-between">
+                    <span class="font-medium text-gray-500">Jumlah dipinjam</span>
+                    <span><?= $row['jumlah'] ?></span>
+                </div>
+
+                <div class="flex justify-between">
+                    <span class="font-medium text-gray-500">Pinjam</span>
+                    <span><?= $tanggalPinjam ?></span>
+                </div>
+
+                <div class="flex justify-between">
+                    <span class="font-medium text-gray-500">Kembali</span>
+                    <span><?= $tanggalKembali ?></span>
+                </div>
+
+                <div class="flex justify-between items-center mt-3">
+
+                    <!-- STATUS -->
+                    <span class="px-2 py-1 text-[10px] font-semibold rounded-full <?= $statusColor ?>">
+                        <?= ucfirst($status) ?>
+                    </span>
+                </div>
+            </div>
+       
+         <?php 
+            }
+        } else {
+        ?>
+            <p class="text-gray-500 text-sm">Tidak ada data peminjaman.</p>
+        <?php } ?>
     </main>
 </body>
 </html>

@@ -82,11 +82,11 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
 
                 // WARNA STATUS
                 if ($status == 'dipinjam') {
-                    $statusColor = 'bg-yellow-100 text-yellow-700';
-                } elseif ($status == 'menunggu konfirmasi') {
-                    $statusColor = 'bg-blue-100 text-blue-700';
-                } else {
                     $statusColor = 'bg-green-100 text-green-700';
+                } elseif ($status == 'menunggu konfirmasi') {
+                    $statusColor = 'bg-yellow-100 text-yellow-700';
+                } else {
+                    $statusColor = 'bg-blue-100 text-blue-700';
                 }
 
                 $tanggalPinjam = date('d M Y', strtotime($row['tanggal_pinjam']));
@@ -130,16 +130,15 @@ $total_pinjam = mysqli_fetch_assoc($total_pinjam_query)['total'];
                     <!-- AKSI -->
                     <?php if ($status == 'dipinjam') { ?>
                         <a href="../aksi/request_kembali.php?id=<?= $row['id_transaksi']; ?>" 
-                           class="text-[10px] bg-blue-100 border border-blue-500 px-2 py-1 rounded hover:bg-blue-200 transition"
+                           class="text-[10px] bg-green-100 border border-green-500 px-2 py-1 rounded hover:bg-green-200 text-green-500 transition"
                            onclick="return confirm('Ajukan pengembalian buku ini?');">
                             Ajukan Pengembalian
                         </a>
 
                     <?php } elseif ($status == 'menunggu konfirmasi') { ?>
 
-                        <!-- MINI INDICATOR (lebih elegan dari text panjang) -->
-                        <div class="flex items-center gap-1 text-[10px] text-blue-500">
-                            <span class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                        <div class="flex items-center gap-1 text-[10px] text-yellow-500">
+                            <span class="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
                             <span>Diproses</span>
                         </div>
 
