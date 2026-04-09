@@ -96,13 +96,13 @@ $q_buku_terbaru = mysqli_query($config, "
         <!-- Hero Content -->
         <div class="relative max-w-5xl mx-auto px-6 text-center text-white">
             <h1 class="text-3xl md:text-5xl font-semibold leading-tight">
-                Sistem Perpustakaan Digital
+                Sistem Peminjaman Buku Yang
                 <br>
                 <span class="font-bold">Efisien dan Terintegrasi</span>
             </h1>
 
             <p class="mt-4 text-sm md:text-base text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Kelola koleksi buku, peminjaman, dan anggota dalam satu sistem digital 
+                Kelola Peminjaman, koleksi buku, dan anggota dalam satu sistem digital 
                 yang mudah digunakan dan dapat diakses secara real-time.
             </p>
 

@@ -55,8 +55,9 @@
             </h3>
             <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-lg border-l-4 border-cyan-accent">
                 <div class="bg-cyan-accent/20 p-3 rounded-lg">
-                    <img src="../assets/img/book.png" class="w-6 h-6">
+                    <img src="../assets/img/book.png" class="w-6 h-6 bg
                 </div>
+                
                 <div>
                     <p class="text-sm text-gray-500">Belum ada aktivitas terbaru</p>
                 </div>

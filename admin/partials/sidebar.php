@@ -32,9 +32,9 @@ $menu_items = [
     </div>
 
     <!-- Notifikasi -->
-    <div class="hidden lg:flex items-center gap-4">
+    <div class="flex items-center gap-4 mr-4">
         <a href="daftar_transaksi.php" class="relative">
-            <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5">
+            <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5 lg:w-6 lg:h-6">
             <?php
                 $notif_query = mysqli_query($config, "SELECT COUNT(*) AS total FROM transaksi WHERE status = 'menunggu konfirmasi'");
                 $notif_count = mysqli_fetch_array($notif_query)['total'];
@@ -90,6 +90,8 @@ $menu_items = [
 
 <!-- Overlay Mobile -->
 <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden lg:hidden" onclick="toggleSidebar()"></div>
+
+
 
 <script>
     function confirmLogout(event) {

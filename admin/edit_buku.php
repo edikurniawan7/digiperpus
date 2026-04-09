@@ -50,7 +50,7 @@ $d = mysqli_fetch_array($data);
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Cover Buku</label>
                         <div class="flex gap-4">
                             <div id="cover-preview" class="w-32 h-40 border-2 border-dashed border-gray-300 rounded-lg flex-shrink-0 bg-gray-50 flex items-center justify-center overflow-hidden">
-                                <img id="cover-img" src="../uploads/cover/ $d['cover']; ?>" alt="Cover" class="w-full h-full object-cover">
+                                <img id="cover-img" src="../uploads/cover/<?= $d['cover']; ?>" alt="Cover Buku" class="w-full h-full object-cover">
                             </div>
                             <div class="flex-1 flex flex-col justify-center">
                                 <input type="file" name="cover" id="cover" accept="image/*" class="text-sm text-gray-600 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
