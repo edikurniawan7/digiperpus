@@ -259,7 +259,7 @@ $q_buku_terbaru = mysqli_query($config, "
     </section>
 
     <!-- BUKU TERBARU SECTION -->
-<section class="py-16 bg-gray-light">
+<section id="katalog" class="py-16 bg-gray-light">
     <div class="max-w-6xl mx-auto px-4">
 
         <!-- Heading -->
@@ -449,225 +449,49 @@ $q_buku_terbaru = mysqli_query($config, "
 
 
     <!-- FOOTER -->
-    <footer class="bg-blue-secondary text-white py-12">
-        <div class="max-w-5xl mx-auto px-4">
-            <!-- Footer Content Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Brand Info -->
-                <div>
-                    <h3 class="text-lg font-semibold mb-3">Digiperpus</h3>
-                    <p class="text-sm text-blue-100 leading-relaxed">
-                        Sistem perpustakaan digital yang membantu pengelolaan buku, 
-                        peminjaman, dan data anggota secara lebih efisien dan terstruktur.
-                    </p>
-                </div>
-
-                <!-- Quick Contact -->
-                <div>
-                    <h4 class="text-sm font-semibold mb-3">Kontak</h4>
-                    <ul class="space-y-2 text-sm text-blue-100">
-                        <li>Email: digiperpus@email.com</li>
-                        <li>Telp: 0812-3456-7890</li>
-                        <li>Indonesia</li>
-                    </ul>
-                </div>
+    <footer class="bg-white border-t border-gray-200 mt-16">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+        
+        <!-- Branding -->
+        <div>
+            <div class="flex items-center gap-3">
+                <img src="assets/img/logo_digiperpus1.png" alt="Logo DigiPerpus" class="h-12 w-40 object-cover">
             </div>
 
-            <!-- Footer Bottom -->
-            <div class="border-t border-white mt-8 pt-4 text-center">
-                <p class="text-xs text-blue-100">
-                    &copy; 2026 Digiperpus. Semua hak dilindungi.
-                </p>
-            </div>
+            <p class="text-gray-600 mt-4 leading-relaxed text-sm">
+                Sistem peminjaman buku digital yang dirancang untuk memberikan kemudahan dalam mengelola serta mengakses koleksi buku.
+            </p>
         </div>
-    </footer>
+
+        <!-- Navigasi -->
+        <div>
+            <h3 class="text-blue-secondary font-medium mb-4">Navigasi</h3>
+            <ul class="space-y-2 text-gray-600 text-sm">
+                <li><a href="#beranda" class="hover:text-black transition">Beranda</a></li>
+                <li><a href="#tentang" class="hover:text-black transition">Tentang</a></li>
+                <li><a href="#katalog" class="hover:text-black transition">Katalog Buku</a></li>
+                <li><a href="#fitur" class="hover:text-black transition">Layanan</a></li>
+            </ul>
+        </div>
+
+        <!-- Kontak -->
+        <div>
+            <h3 class="text-blue-secondary font-medium mb-4">Kontak</h3>
+            <p class="text-gray-600 text-sm">Email: digiperpus77@gmail.com</p>
+            <p class="text-gray-600 text-sm mt-2">Telp: +62 821-6451-2787</p>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 text-center text-gray-500 text-sm">
+            © 2026 Sistem Peminjaman Buku Digital. All rights reserved.
+        </div>
+    </div>
+</footer>
+
      <!-- JavaScript -->
     <script src="assets/js/kontak.js"></script>
-<script>
-    // 1. SMOOTH SCROLL
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // 2. NAVBAR DINAMIS
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('shadow-lg', 'bg-white/95');
-        } else {
-            navbar.classList.remove('shadow-lg', 'bg-white/95');
-        }
-    });
-
-    // 3. MOBILE MENU
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    let mobileMenuOpen = false;
-
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenuOpen = !mobileMenuOpen;
-        // Toggle menu visibility
-        const navMenu = navbar.querySelector('.hidden.md\\:flex');
-        if (mobileMenuOpen) {
-            const menu = document.createElement('div');
-            menu.id = 'mobile-nav-menu';
-            menu.className = 'md:hidden absolute top-18 left-0 right-0 bg-white shadow-lg';
-            menu.innerHTML = `
-                <div class="flex flex-col space-y-2 p-4">
-                    <a href="#beranda" class="text-gray-800 px-4 py-2 hover:bg-teal-50 rounded">Beranda</a>
-                    <a href="#tentang" class="text-gray-800 px-4 py-2 hover:bg-teal-50 rounded">Tentang</a>
-                    <a href="#fitur" class="text-gray-800 px-4 py-2 hover:bg-teal-50 rounded">Fitur</a>
-                    <a href="#kontak" class="text-gray-800 px-4 py-2 hover:bg-teal-50 rounded">Kontak</a>
-                    <a href="auth/login.php" class="text-gray-800 px-4 py-2 hover:bg-teal-50 rounded">Login</a>
-                </div>
-            `;
-            navbar.appendChild(menu);
-        } else {
-            const menu = document.getElementById('mobile-nav-menu');
-            if (menu) menu.remove();
-        }
-    });
-
-    // 4. ANIMASI MUNCUL SECTION (FADE IN)
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in, section').forEach(el => {
-        observer.observe(el);
-    });
-
-    // 5. ANIMASI STATISTIK (COUNTER)
-    function animateCounter(element, target, duration = 2000) {
-        let current = 0;
-        const increment = target / (duration / 16);
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                element.textContent = target;
-                clearInterval(timer);
-            } else {
-                element.textContent = Math.floor(current);
-            }
-        }, 16);
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const statsSection = entry.target;
-                statsSection.querySelectorAll('.text-4xl').forEach(stat => {
-                    const value = parseInt(stat.textContent);
-                    animateCounter(stat, value);
-                });
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const statsSection = document.querySelector('[class*="bg-blue-secondary"]');
-    if (statsSection) statsObserver.observe(statsSection);
-
-    // 6. SLIDER OTOMATIS
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('#testimonialSlider > div');
-    const dots = document.querySelectorAll('.dot');
-
-    function goToSlide(n) {
-        currentSlide = (n + slides.length) % slides.length;
-        const slider = document.getElementById('testimonialSlider');
-        slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-        
-        dots.forEach(dot => dot.classList.remove('bg-blue-secondary'));
-        dots.forEach(dot => dot.classList.add('bg-gray-300'));
-        dots[currentSlide].classList.remove('bg-gray-300');
-        dots[currentSlide].classList.add('bg-blue-secondary');
-    }
-
-    // Auto slide setiap 5 detik
-    let sliderInterval = setInterval(() => {
-        goToSlide(currentSlide + 1);
-    }, 5000);
-
-    // Dot navigation
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            clearInterval(sliderInterval);
-            goToSlide(index);
-            sliderInterval = setInterval(() => {
-                goToSlide(currentSlide + 1);
-            }, 5000);
-        });
-    });
-
-    // 7. FORM FEEDBACK
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const form = this;
-    const formData = new FormData(form);
-    const messageBox = document.getElementById('formMessage');
-
-    fetch('../aksi/aksi_kirim_pesan.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === 'success') {
-            messageBox.innerText = "Pesan berhasil dikirim!";
-            messageBox.className = "text-green-600 text-sm text-center mt-2";
-            form.reset();
-        } else {
-            messageBox.innerText = data.message;
-            messageBox.className = "text-red-600 text-sm text-center mt-2";
-        }
-    })
-    .catch(() => {
-        messageBox.innerText = "Terjadi kesalahan.";
-        messageBox.className = "text-red-600 text-sm text-center mt-2";
-    });
-});
-
-    // CSS untuk animasi fade-in
-    const style = document.createElement('style');
-    style.textContent = `
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .fade-in-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #testimonialSlider {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-    `;
-    document.head.appendChild(style);
-</script>
-
-    
-
+    <script src="assets/js/index.js"></script>
 </body>
 </html>

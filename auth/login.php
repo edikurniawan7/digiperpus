@@ -38,7 +38,7 @@
                 <img 
                             src="../assets/img/user.png" 
                             alt="" 
-                            class="absolute left-3 top-3.5 w-5 h-5 pointer-events-none"
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
                         >
                         <input 
                             type="text" 
@@ -60,7 +60,7 @@
                         <img 
                             src="../assets/img/padlock.png" 
                             alt="" 
-                            class="absolute left-3 top-3.5 w-5 h-5 pointer-events-none"
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
                         >
                         <input 
                             type="password"

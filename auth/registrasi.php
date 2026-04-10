@@ -33,7 +33,7 @@
                         <img 
                             src="../assets/img/user.png" 
                             alt="" 
-                            class="absolute left-3 top-3.5 w-5 h-5 pointer-events-none"
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
                         >
                         <input 
                             type="text" 
@@ -55,7 +55,7 @@
                         <img 
                             src="../assets/img/user.png" 
                             alt="" 
-                            class="absolute left-3 top-3.5 w-5 h-5 pointer-events-none"
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
                         >
                         <input 
                             type="text" 
@@ -77,7 +77,7 @@
                         <img 
                             src="../assets/img/padlock.png" 
                             alt="" 
-                            class="absolute left-3 top-3.5 w-5 h-5 pointer-events-none"
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
                         >
                         <input 
                             type="password"
@@ -107,7 +107,7 @@
                         <img 
                             src="../assets/img/padlock.png" 
                             alt="" 
-                            class="absolute left-3 top-3.5 w-5 h-5 pointer-events-none"
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
                         >
                         <input 
                             type="password"
@@ -138,15 +138,16 @@
                 </button>
 
             </form>
-        </div>
-
-        <!-- Tombol Login -->
+            <!-- Tombol Login -->
         <div class="text-center mt-6 text-sm text-gray-600">
             Sudah punya akun?
             <a href="../auth/login.php" class="text-teal-primary font-semibold hover:underline">
                 Masuk sekarang
             </a>
         </div>
+        </div>
+
+        
 
         <!-- Tombol Kembali -->
         <div class="text-center mt-4">

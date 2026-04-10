@@ -2,7 +2,7 @@
     // Koneksi ke database
     include '../config.php';
 
-    //Nulai Sesi
+    //Mulai Sesi
     session_start();
 
     // Cek apakah user sudah login
@@ -11,6 +11,18 @@
         exit();
     }
 
+    // Ambil ID user dari sesi
+    $id_user = $_SESSION['id_user'];
+
+    // Ambil 5 aktivitas terbaru dari tabel transaksi
+    $query = mysqli_query($config, "
+        SELECT t.*, b.judul 
+        FROM transaksi t
+        JOIN buku b ON t.id_buku = b.id_buku
+        WHERE t.id_user = '$id_user'
+        ORDER BY t.tanggal_pinjam DESC
+        LIMIT 5
+    ");
 ?>
     
 
@@ -49,20 +61,77 @@
         </div>
 
         <!-- Aktivitas Terbaru -->
-        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-4">
-                Aktivitas Terbaru
-            </h3>
-            <div class="flex items-center gap-4 p-4 bg-gradient-to-r from-cyan-50 to-cyan-100 rounded-lg border-l-4 border-cyan-accent">
-                <div class="bg-cyan-accent/20 p-3 rounded-lg">
-                    <img src="../assets/img/book.png" class="w-6 h-6 bg
+<div class="bg-white p-4 rounded-lg shadow-sm mb-6">
+    <h3 class="text-base font-semibold text-gray-700 mb-3">
+        Aktivitas Terbaru
+    </h3>
+
+    <?php if(mysqli_num_rows($query) > 0): ?>
+        <div class="space-y-2 max-h-64 overflow-y-auto pr-1">
+
+            <?php while($data = mysqli_fetch_assoc($query)): ?>
+                <?php
+                    $status = $data['status'];
+                    $judul  = $data['judul'];
+
+                    $text = "";
+                    $color = "";
+                    $bg = "";
+                    $icon = "";
+
+                    if($status == 'dipinjam'){
+                        $text  = "Kamu meminjam buku \"$judul\"";
+                        $color = "border-cyan-400";
+                        $bg    = "bg-cyan-50";
+                        $icon  = "../assets/img/pinjam.png";
+                    } elseif($status == 'menunggu_konfirmasi'){
+                        $text  = "Kamu mengajukan pengembalian buku \"$judul\"";
+                        $color = "border-yellow-400";
+                        $bg    = "bg-yellow-50";
+                        $icon  = "../assets/img/history.png";
+                    } elseif($status == 'dikembalikan'){
+                        $text  = "Kamu telah mengembalikan buku \"$judul\"";
+                        $color = "border-green-400";
+                        $bg    = "bg-green-50";
+                        $icon  = "../assets/img/history.png";
+                    }
+                ?>
+
+                <div class="flex items-center gap-3 p-3 rounded-md border-l-4 <?= $bg ?> <?= $color ?> hover:shadow-sm transition">
+
+                    <div class="p-1.5 bg-white rounded-md shadow-sm">
+                        <img src="<?= $icon ?>" class="w-4 h-4">
+                    </div>
+
+                    <div class="flex-1 leading-tight">
+                        <p class="text-sm text-gray-700 font-medium">
+                            <?= $text ?>
+                        </p>
+                        <p class="text-[11px] text-gray-500 mt-0.5">
+                            <?= date('d M Y H:i', strtotime($data['tanggal_pinjam'])) ?>
+                        </p>
+                    </div>
+
                 </div>
-                
-                <div>
-                    <p class="text-sm text-gray-500">Belum ada aktivitas terbaru</p>
-                </div>
+
+            <?php endwhile; ?>
+
+        </div>
+
+    <?php else: ?>
+        <!-- Kosong -->
+        <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-md border-l-4 border-gray-300">
+            <div class="p-1.5 bg-white rounded-md shadow-sm">
+                <img src="../assets/img/empty.png" class="w-4 h-4">
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">
+                    Belum ada aktivitas terbaru
+                </p>
             </div>
         </div>
+    <?php endif; ?>
+</div>
 
         <h1 class="text-2xl font-bold text-gray-800">
             Daftar Buku 
