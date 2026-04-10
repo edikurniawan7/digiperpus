@@ -52,12 +52,10 @@
                              class="w-full rounded shadow-sm">
                     </div>
                     <div class="flex-1 text-sm">
-                        <h3 class="font-semibold text-gray-900 mb-1"><?= $buku['judul']; ?></h3>
+                        <h2 class="text-lg font-semibold text-gray-800"><?= $buku['judul']; ?></h2>
                         <p class="text-gray-600 mb-1"><?= $buku['pengarang']; ?></p>
                         <p class="text-teal-600 font-medium">Stok: <?= $buku['stok']; ?> tersedia</p>
-                        <!-- Deskripsi singkat -->
-                        <p class="text-gray-700 mt-2 text-xs justify"><?= $buku['deskripsi']; ?></p>
-                    </div>
+                        </div>
                 </div>
 
                 <!-- Form -->

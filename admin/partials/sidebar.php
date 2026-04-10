@@ -32,20 +32,25 @@ $menu_items = [
     </div>
 
     <!-- Notifikasi -->
-    <div class="flex items-center gap-4 mr-4">
-        <a href="daftar_transaksi.php" class="relative">
-            <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5 lg:w-6 lg:h-6">
-            <?php
-                $notif_query = mysqli_query($config, "SELECT COUNT(*) AS total FROM transaksi WHERE status = 'menunggu konfirmasi'");
-                $notif_count = mysqli_fetch_array($notif_query)['total'];
-                if ($notif_count > 0):
-            ?>
-            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
-                <?= $notif_count; ?>
-            </span>
-            <?php endif; ?>
-        </a>
-        </div>
+    <?php
+$notif_query = mysqli_query($config, "
+    SELECT COUNT(*) AS total 
+    FROM transaksi 
+    WHERE (status = 'menunggu konfirmasi' OR status = 'dipinjam')
+    AND is_read = 0
+");
+$notif_count = mysqli_fetch_array($notif_query)['total'];
+?>
+
+<a href="notifikasi.php" class="relative mr-4"> 
+    <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5 lg:w-6 lg:h-6">
+
+    <?php if ($notif_count > 0): ?>
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
+            <?= $notif_count; ?>
+        </span>
+    <?php endif; ?>
+</a>
 
     <div class="flex items-center gap-2 lg:gap-4">
         <div class="hidden sm:block text-right">

@@ -19,3 +19,4 @@
     }
 
     mysqli_close($config);
+?>

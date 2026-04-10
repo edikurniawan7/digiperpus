@@ -81,6 +81,11 @@
                     </div>
                 </div>
 
+                <!-- Error Message -->
+                <div id="errorMessage" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4" role="alert">
+                    <span class="text-sm"></span>
+                </div>
+
                 <!-- Tombol Login -->
                 <button
                     type="submit"
@@ -90,27 +95,16 @@
                 </button>
 
             </form>
-            <!-- Pesan Error -->
-            <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
-<script>
-Swal.fire({
-    title: 'Berhasil!',
-    text: 'Registrasi berhasil, silakan login.',
-    icon: 'success',
-    confirmButtonText: 'OK'
-});
-</script>
-<?php endif; ?>
-
-        </div>
-
-        <!-- Tombol Register -->
-        <div class="text-center mt-6 text-sm text-gray-600">
+             <!-- Tombol Register -->
+        <div class="text-center mt-2 text-sm text-gray-600">
             Belum punya akun?
             <a href="../auth/registrasi.php" class="text-teal-primary font-semibold hover:underline">
                 Daftar sekarang
             </a>
         </div>
+        </div>
+
+       
 
         <!-- Tombol Kembali -->
         <div class="text-center mt-4">

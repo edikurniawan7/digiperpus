@@ -41,6 +41,9 @@ session_start();
 
             <!-- Tabel -->
             <div class="overflow-x-auto">
+                <div id="successMessage" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4">
+                    <span class="text-sm"></span>
+                </div>
                 <table class="w-full text-xs border-collapse">
                     <thead>
                         <tr class="bg-gray-100 rounded-lg text-gray-700 uppercase text-left border border-gray-300">
@@ -99,7 +102,7 @@ session_start();
     <script>
         function hapusAnggota(id) {
             if(confirm('Apakah Anda yakin ingin menghapus anggota ini?')) {
-                window.location.href = 'hapus_anggota.php?id=' + id;
+                window.location.href = 'hapus_anggota.php?id_user=' + id;
             }
         }
     </script>

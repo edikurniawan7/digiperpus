@@ -71,8 +71,13 @@ if ($page > $total_pages) {
                 <option value="25" <?= $limit == 25 ? 'selected' : '' ?>>25 Data</option>
                 <option value="50" <?= $limit == 50 ? 'selected' : '' ?>>50 Data</option>
         </select>
+        <!-- Cetak PDF -->
+        <a href="cetak_laporan_peminjaman.php" target="_blank" class="ml-auto bg-green-100 border border-green-500 rounded-lg px-3 py-2 text-xs text-green-600 hover:bg-green-200 transition flex items-center gap-1">
+             <img src="../assets/img/pdf-file.png" alt="Cetak" class="w-4 h-4"> Cetak PDF
+        </a>
     </div>
 
+   
 
     <!-- TABLE -->
     <div class="overflow-x-auto">
