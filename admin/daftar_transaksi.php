@@ -19,6 +19,7 @@ $query = mysqli_query($config, "
     JOIN users u ON t.id_user = u.id_user
     WHERE t.status = 'dipinjam' OR t.status = 'menunggu konfirmasi'
     ORDER BY t.id_transaksi DESC
+    LIMIT $start, $limit
 ");
 
 // Hitung total data (yang statusnya 'dipinjam' atau 'menunggu konfirmasi') untuk pagination
@@ -84,7 +85,7 @@ if ($page > $total_pages) {
         <table class="w-full text-xs border-collapse">
             <thead>
                 <tr class="bg-gray-100 rounded-lg text-gray-700 uppercase text-left border border-gray-300">
-                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">No</th>
                     <th class="px-4 py-3">Nama</th>
                     <th class="px-4 py-3">Judul</th>
                     <th class="px-4 py-3">Jumlah</th>
@@ -96,7 +97,7 @@ if ($page > $total_pages) {
             </thead>
 
             <tbody id="transaksi-body">
-            <?php if(mysqli_num_rows($query) > 0){ ?>
+                <?php  $no = $start + 1; if(mysqli_num_rows($query) > 0){ ?>
                 <?php while($t = mysqli_fetch_array($query)){ ?>
                 
                 <tr class="transaksi-item border border-gray-300 hover:bg-slate-50 transition"
@@ -105,7 +106,7 @@ if ($page > $total_pages) {
                     data-judul="<?= strtolower($t['judul']); ?>"
                     data-status="<?= strtolower($t['status']); ?>">
 
-                    <td class="px-4 py-3 text-gray-700"><?= $t['id_transaksi']; ?></td>
+                    <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
                     <td class="px-4 py-3 text-gray-700"><?= $t['nama']; ?></td>
                     <td class="px-4 py-3 text-gray-700"><?= $t['judul']; ?></td>
                     <td class="px-4 py-3 text-gray-700"><?= $t['jumlah']; ?></td>

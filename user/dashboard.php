@@ -21,7 +21,7 @@
         JOIN buku b ON t.id_buku = b.id_buku
         WHERE t.id_user = '$id_user'
         ORDER BY t.tanggal_pinjam DESC
-        LIMIT 5
+        LIMIT 3
     ");
 ?>
     
@@ -84,16 +84,16 @@
                         $color = "border-cyan-400";
                         $bg    = "bg-cyan-50";
                         $icon  = "../assets/img/pinjam.png";
-                    } elseif($status == 'menunggu_konfirmasi'){
+                    } elseif($status == 'menunggu konfirmasi'){
                         $text  = "Kamu mengajukan pengembalian buku \"$judul\"";
                         $color = "border-yellow-400";
                         $bg    = "bg-yellow-50";
-                        $icon  = "../assets/img/history.png";
+                        $icon  = "../assets/img/request.png";
                     } elseif($status == 'dikembalikan'){
                         $text  = "Kamu telah mengembalikan buku \"$judul\"";
                         $color = "border-green-400";
                         $bg    = "bg-green-50";
-                        $icon  = "../assets/img/history.png";
+                        $icon  = "../assets/img/pinjam.png";
                     }
                 ?>
 
@@ -108,7 +108,7 @@
                             <?= $text ?>
                         </p>
                         <p class="text-[11px] text-gray-500 mt-0.5">
-                            <?= date('d M Y H:i', strtotime($data['tanggal_pinjam'])) ?>
+                            <?= date('d M Y, H:i', strtotime($data['tanggal_pinjam'])) ?>
                         </p>
                     </div>
 
@@ -122,7 +122,7 @@
         <!-- Kosong -->
         <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-md border-l-4 border-gray-300">
             <div class="p-1.5 bg-white rounded-md shadow-sm">
-                <img src="../assets/img/empty.png" class="w-4 h-4">
+                <img src="../assets/img/null.png" class="w-4 h-4">
             </div>
             <div>
                 <p class="text-sm text-gray-500">
@@ -214,6 +214,10 @@
         <?php endwhile; ?>
     </div>
 </div>
+        <!-- Footer -->
+        <div class="mt-10 text-center text-xs text-gray-500">
+            &copy; 2024 Digiperpus. All rights reserved.
+        </div>
 
 </main>
 

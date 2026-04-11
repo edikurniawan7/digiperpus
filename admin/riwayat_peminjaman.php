@@ -72,13 +72,17 @@ $query = mysqli_query($config, "
                 <option value="25" <?= $limit == 25 ? 'selected' : '' ?>>25 Data</option>
                 <option value="50" <?= $limit == 50 ? 'selected' : '' ?>>50 Data</option>
         </select>
+        <!-- Cetak PDF -->
+        <a href="cetak_riwayat_peminjaman.php" target="_blank" class="ml-auto bg-green-100 border border-green-500 rounded-lg px-3 py-2 text-xs text-green-600 hover:bg-green-200 transition flex items-center gap-1">
+             <img src="../assets/img/pdf-file.png" alt="Cetak" class="w-4 h-4"> Cetak PDF
+        </a>
         </div>
        <!-- TABLE -->
     <div class="overflow-x-auto">
         <table class="w-full text-xs border-collapse">
             <thead>
                 <tr class="bg-gray-100 rounded-lg text-gray-700 uppercase text-left border border-gray-300">
-                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">No</th>
                     <th class="px-4 py-3">Nama</th>
                     <th class="px-4 py-3">Judul</th>
                     <th class="px-4 py-3">Jumlah</th>
@@ -90,7 +94,7 @@ $query = mysqli_query($config, "
             </thead>
 
             <tbody id="transaksi-body">
-            <?php if(mysqli_num_rows($query) > 0){ ?>
+                <?php $no = 1; if(mysqli_num_rows($query) > 0){ ?>
                 <?php while($t = mysqli_fetch_array($query)){ ?>
                 
                 <tr class="transaksi-item border border-gray-300 hover:bg-slate-50 transition"
@@ -99,7 +103,7 @@ $query = mysqli_query($config, "
                     data-judul="<?= strtolower($t['judul']); ?>"
                     data-status="<?= strtolower($t['status']); ?>">
 
-                    <td class="px-4 py-3 text-gray-700"><?= $t['id_transaksi']; ?></td>
+                    <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
                     <td class="px-4 py-3 text-gray-700"><?= $t['nama']; ?></td>
                     <td class="px-4 py-3 text-gray-700"><?= $t['judul']; ?></td>
                     <td class="px-4 py-3 text-gray-700"><?= $t['jumlah']; ?></td>

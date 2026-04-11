@@ -23,6 +23,14 @@ $q_buku_terbaru = mysqli_query($config, "
     ORDER BY id_buku DESC 
     LIMIT 5
 ");
+
+// ambil testimoni dari tabel kontak (yang sudah dibaca)
+$queryTestimoni = mysqli_query($config, "
+    SELECT * FROM pesan
+    WHERE status='dibaca' 
+    ORDER BY created_at DESC 
+    LIMIT 5
+");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -338,38 +346,55 @@ $q_buku_terbaru = mysqli_query($config, "
                 <p class="text-sm text-gray-600">Pengalaman pengguna dalam menggunakan Digiperpus</p>
             </div>
 
-            <!-- Testimonial Slider -->
-            <div class="overflow-hidden relative">
-                <div id="testimonialSlider" class="flex transition-transform duration-500">
-                    <!-- Testimonial 1 -->
-                    <div class="w-full flex-shrink-0 px-4">
-                        <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
-                            <p class="text-sm text-gray-600 italic mb-4">"Sistemnya memudahkan pencarian buku dan proses peminjaman jadi lebih cepat."</p>
-                            <h4 class="text-sm font-semibold text-gray-700">Sari Dewi</h4>
-                            <span class="text-xs text-gray-500">Pustakawan Sekolah</span>
-                        </div>
-                    </div>
+           <!-- Testimonial Slider -->
+<div class="overflow-hidden relative">
+    <div id="testimonialSlider" class="flex transition-transform duration-500">
 
-                    <!-- Testimonial 2 -->
-                    <div class="w-full flex-shrink-0 px-4">
-                        <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
-                            <p class="text-sm text-gray-600 italic mb-4">"Interface sederhana dan mudah digunakan, cocok untuk sistem perpustakaan digital."</p>
-                            <h4 class="text-sm font-semibold text-gray-700">Ahmad Rahman</h4>
-                            <span class="text-xs text-gray-500">Pengelola Perpustakaan</span>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="w-full flex-shrink-0 px-4">
-                        <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
-                            <p class="text-sm text-gray-600 italic mb-4">"Fitur peminjaman dan pencatatan transaksi sangat membantu pengelolaan data."</p>
-                            <h4 class="text-sm font-semibold text-gray-700">Rina Kartika</h4>
-                            <span class="text-xs text-gray-500">Admin Perpustakaan</span>
-                        </div>
+        <?php if(mysqli_num_rows($queryTestimoni) > 0): ?>
+            <?php $index = 0; ?>
+            <?php while($data = mysqli_fetch_assoc($queryTestimoni)): ?>
+                
+                <div class="w-full flex-shrink-0 px-4">
+                    <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
+                        <p class="text-sm text-gray-600 italic mb-4">
+                            "<?= htmlspecialchars($data['pesan']); ?>"
+                        </p>
+                        <h4 class="text-sm font-semibold text-gray-700">
+                            <?= htmlspecialchars($data['nama']); ?>
+                        </h4>
+                        <span class="text-xs text-gray-500">
+                            Pengunjung
+                        </span>
                     </div>
                 </div>
-            </div>
 
+            <?php $index++; endwhile; ?>
+        <?php else: ?>
+            <div class="w-full flex-shrink-0 px-4">
+                <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
+                    <p class="text-sm text-gray-600 italic mb-4">
+                        "Belum ada testimoni tersedia."
+                    </p>
+                    <h4 class="text-sm font-semibold text-gray-700">
+                        Digiperpus
+                    </h4>
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</div>
+
+    <!-- Slider Dots Navigation -->
+<div class="flex justify-center mt-6 gap-2">
+    <?php 
+    mysqli_data_seek($queryTestimoni, 0); 
+    $i = 0;
+    while(mysqli_fetch_assoc($queryTestimoni)):
+    $i++;
+    endwhile; 
+    ?>
+</div>
             <!-- Slider Dots Navigation -->
             <div class="flex justify-center mt-6 gap-2">
                 <button class="dot w-2.5 h-2.5 bg-blue-secondary rounded-full" data-slide="0"></button>
@@ -477,8 +502,9 @@ $q_buku_terbaru = mysqli_query($config, "
         <!-- Kontak -->
         <div>
             <h3 class="text-blue-secondary font-medium mb-4">Kontak</h3>
-            <p class="text-gray-600 text-sm">Email: digiperpus77@gmail.com</p>
+            <p class="text-gray-600 text-sm">Email: digiperpus577@gmail.com</p>
             <p class="text-gray-600 text-sm mt-2">Telp: +62 821-6451-2787</p>
+            <p class="text-gray-600 text-sm mt-2">Alamat: Garut, Jawa Barat</p>
         </div>
     </div>
 

@@ -28,6 +28,12 @@
                         alert("Registrasi berhasil! Silakan login.");
                     </script>
                 <?php endif; ?>
+
+                <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
+    <div class="mb-4 text-center text-sm text-red-500 font-medium">
+        Username atau password salah!
+    </div>
+<?php endif; ?>
             
             <!-- Kolom Username -->
             <div>

@@ -28,28 +28,50 @@ session_start();
     <div class="bg-white p-6 rounded-lg shadow-sm">
 
         <?php
-        // PROSES SIMPAN DATA
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// PROSES SIMPAN DATA
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $id_user = $_POST['id_user'];
-            $id_buku = $_POST['id_buku'];
-            $tanggal_pinjam = date('Y-m-d');
-            $tanggal_kembali = date('Y-m-d', strtotime('+10 days'));
-            $status = 'Dipinjam';
+    $id_user = $_POST['id_user'];
+    $id_buku = $_POST['id_buku'];
+    $tanggal_pinjam = date('Y-m-d');
+    $tanggal_kembali = date('Y-m-d', strtotime('+10 days'));
+    $jumlah = $_POST['jumlah'];
+    $status = 'dipinjam';
 
-            $insert_query = mysqli_query($config, "
-                INSERT INTO transaksi (id_user, id_buku, tanggal_pinjam, tanggal_kembali, status) 
-                VALUES ('$id_user', '$id_buku', '$tanggal_pinjam', '$tanggal_kembali', '$status')
+    // Ambil stok buku sekarang
+    $cek_stok = mysqli_query($config, "SELECT stok FROM buku WHERE id_buku='$id_buku'");
+    $data_stok = mysqli_fetch_assoc($cek_stok);
+    $stok_sekarang = $data_stok['stok'];
+
+    // Validasi stok cukup
+    if ($stok_sekarang < $jumlah) {
+        echo '<div class="bg-red-100 text-red-700 p-3 rounded-lg mb-4">Stok buku tidak mencukupi.</div>';
+    } else {
+
+        // Insert transaksi
+        $insert_query = mysqli_query($config, "
+            INSERT INTO transaksi (id_user, id_buku, tanggal_pinjam, tanggal_kembali, status, jumlah) 
+            VALUES ('$id_user', '$id_buku', '$tanggal_pinjam', '$tanggal_kembali', '$status', '$jumlah')
+        ");
+
+        if ($insert_query) {
+
+            // Kurangi stok
+            $update_stok = mysqli_query($config, "
+                UPDATE buku 
+                SET stok = stok - $jumlah 
+                WHERE id_buku = '$id_buku'
             ");
 
-            if ($insert_query) {
-                echo '<div class="bg-green-100 text-green-700 p-3 rounded-lg mb-4">Peminjaman berhasil ditambahkan.</div>';
-                echo '<script>setTimeout(() => { window.location.href = "daftar_transaksi.php"; }, 1500);</script>';
-            } else {
-                echo '<div class="bg-red-100 text-red-700 p-3 rounded-lg mb-4">Gagal menambahkan peminjaman.</div>';
-            }
+            echo '<div class="bg-green-100 text-green-700 p-3 rounded-lg mb-4">Peminjaman berhasil ditambahkan.</div>';
+            echo '<script>setTimeout(() => { window.location.href = "daftar_transaksi.php"; }, 1500);</script>';
+
+        } else {
+            echo '<div class="bg-red-100 text-red-700 p-3 rounded-lg mb-4">Gagal menambahkan peminjaman.</div>';
         }
-        ?>
+    }
+}
+?>
 
         <!-- FORM -->
         <form method="POST" class="mt-6">
@@ -59,7 +81,7 @@ session_start();
                 <label class="block text-sm font-medium text-gray-700">Pilih Anggota</label>
                 <select name="id_user" class="border border-gray-300 rounded-lg px-3 py-2 text-xs w-full">
                     <?php
-                    $users_query = mysqli_query($config, "SELECT id_user, nama FROM users");
+                    $users_query = mysqli_query($config, "SELECT id_user, nama FROM users WHERE role = 'user'");
                     while ($user = mysqli_fetch_assoc($users_query)) {
                         echo "<option value='{$user['id_user']}'>{$user['nama']}</option>";
                     }

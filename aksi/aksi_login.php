@@ -36,12 +36,12 @@ if ($cek > 0) {
     }
 
     else {
-        header("Location: ../auth/login.php?pesan=gagal");
+        header("Location: ../auth/login.php?error=1");
         exit;
     }
 
 } else {
-    header("Location: ../auth/login.php?pesan=gagal");
+    header("Location: ../auth/login.php?error=1");
     exit;
 }
 ?>

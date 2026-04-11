@@ -47,7 +47,7 @@ session_start();
                 <table class="w-full text-xs border-collapse">
                     <thead>
                         <tr class="bg-gray-100 rounded-lg text-gray-700 uppercase text-left border border-gray-300">
-                            <th class="px-4 py-3">ID Anggota</th>
+                            <th class="px-4 py-3">No</th>
                             <th class="px-4 py-3">Nama</th>
                             <th class="px-4 py-3">Username</th>
                             <th class="px-4 py-3 text-center">Aksi</th>
@@ -55,6 +55,7 @@ session_start();
                     </thead>
                     <tbody id="anggota-body">
                         <?php
+                        $no = 1;
                         $query = "SELECT id_user, nama, username FROM users WHERE role='user' ORDER BY nama ASC";
                         $result = mysqli_query($config, $query);
 
@@ -65,7 +66,7 @@ session_start();
                                 data-id="<?= strtolower($row['id_user']); ?>"
                                 data-nama="<?= strtolower($row['nama']); ?>"
                                 data-username="<?= strtolower($row['username']); ?>">
-                                <td class="px-4 py-3 text-gray-700"><?= $row['id_user']; ?></td>
+                                <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
                                 <td class="px-4 py-3 text-gray-700"><?= $row['nama']; ?></td>
                                 <td class="px-4 py-3 text-gray-700"><?= $row['username']; ?></td>
                                 <td class="px-4 py-3 text-center">

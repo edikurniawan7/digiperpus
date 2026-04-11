@@ -258,6 +258,10 @@ if ($_SESSION['role'] !== 'admin') {
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <div class="mt-10 text-center text-xs text-gray-500">
+            &copy; 2024 Digiperpus. All rights reserved.
+        </div>
     </main>
 </body>
 </html>
