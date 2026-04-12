@@ -93,7 +93,7 @@
                         $text  = "Kamu telah mengembalikan buku \"$judul\"";
                         $color = "border-green-400";
                         $bg    = "bg-green-50";
-                        $icon  = "../assets/img/pinjam.png";
+                        $icon  = "../assets/img/file.png";
                     }
                 ?>
 

@@ -13,15 +13,19 @@ $deskripsi     = $_POST['deskripsi'];
 $cover     = $_FILES['cover']['name'];
 $cover_tmp = $_FILES['cover']['tmp_name'];
 $folder    = '../uploads/cover/' . $cover;
+$file_buku     = $_FILES['file_buku']['name'];
+$file_buku_tmp = $_FILES['file_buku']['tmp_name'];
+$file_buku_folder = '../uploads/e-book/' . $file_buku;
+
 
 // Upload cover
 move_uploaded_file($cover_tmp, $folder);
 
 // Insert ke tabel buku 
 $query = "INSERT INTO buku 
-(judul, pengarang, penerbit, tahun_terbit, id_kategori, stok, deskripsi, cover)
+(judul, pengarang, penerbit, tahun_terbit, id_kategori, stok, deskripsi, cover, file_buku)
 VALUES 
-('$judul', '$pengarang', '$penerbit', '$tahun_terbit', '$id_kategori', '$stok', '$deskripsi', '$cover')";
+('$judul', '$pengarang', '$penerbit', '$tahun_terbit', '$id_kategori', '$stok', '$deskripsi', '$cover', '$file_buku')";
 
 $result = mysqli_query($config, $query);
 

@@ -46,13 +46,6 @@
                             </tr>
                         </tbody>
                     </table>
-                    
-                    <!-- Tombol Edit -->
-                    <div class="mt-6">
-                        <a href="edit_profil.php" class="bg-blue-secondary text-white px-6 py-2 rounded-xl hover:bg-blue-primary transition">
-                            Edit Profil
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

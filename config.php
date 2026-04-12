@@ -3,7 +3,7 @@
     $host = "localhost";
     $user = "root";
     $pass = "";
-    $dbname = "digiperpus-app";
+    $dbname = "digiperpus";
 
     $config = mysqli_connect($host, $user, $pass, $dbname);
 

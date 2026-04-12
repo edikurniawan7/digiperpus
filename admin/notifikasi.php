@@ -42,8 +42,7 @@ mysqli_query($config, "
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
-    <title>Notifikasi - Digiperpus</title>
-    <!-- Tailwind CSS -->
+    <title>Notifikasi - Digiperpus</title>>
     <link href="../src/output.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">

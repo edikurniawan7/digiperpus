@@ -14,27 +14,32 @@ $menu_items = [
         <p class="text-xs sm:text-sm text-gray-500">Digiperpus | Sistem Peminjaman Buku</p>
     </div>
 
-    <!-- Notifikasi -->
+    <!-- Notifikasi Untuk User -->
     <?php
-$notif_query = mysqli_query($config, "
-    SELECT COUNT(*) AS total 
+$id_user = $_SESSION['id_user'];
+
+$q = mysqli_query($config, "
+    SELECT COUNT(*) as total 
     FROM transaksi 
-    WHERE (status = 'menunggu konfirmasi' OR status = 'dikembalikan')
-    AND is_read = 0
+    WHERE id_user = '$id_user'
+    AND (status = 'dipinjam' OR status = 'dikembalikan')
 ");
-$notif_count = mysqli_fetch_array($notif_query)['total'];
+
+$total = mysqli_fetch_array($q)['total'];
+
+$last_seen = $_SESSION['last_notif_user'] ?? 0;
+$new_notif = $total - $last_seen;
 ?>
 
-<a href="notifikasi.php" class="relative mr-4"> 
-    <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5 lg:w-6 lg:h-6">
+<a href="notifikasi.php" class="relative mr-4">
+    <img src="../assets/img/bell.png" class="w-6 h-6">
 
-    <?php if ($notif_count > 0): ?>
-        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
-            <?= $notif_count; ?>
+    <?php if ($new_notif > 0): ?>
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 rounded-full">
+            <?= $new_notif ?>
         </span>
     <?php endif; ?>
 </a>
-
     <div class="flex items-center gap-2 sm:gap-4">
         <div class="text-right hidden sm:block">
             <p class="text-sm font-semibold text-gray-700"><?php echo $_SESSION['username']; ?></p>
