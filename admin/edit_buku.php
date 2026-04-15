@@ -15,15 +15,16 @@ $d = mysqli_fetch_array($data);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <title>Edit Buku</title>
-    
+
     <!-- Tailwind CSS -->
     <link href="../src/output.css" rel="stylesheet">
-    
+
     <!-- JS Preview Cover -->
     <script src="../assets/js/cover-preview.js"></script>
 </head>
@@ -31,9 +32,9 @@ $d = mysqli_fetch_array($data);
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
-    
+
     <!-- Main Content -->
-    <main class="ml-64 p-6 mt-16">  
+    <main class="ml-64 p-6 mt-16">
         <div class="max-w-2xl mx-auto">
             <div class="mb-6">
                 <h1 class="text-2xl font-bold text-gray-800">Edit Buku</h1>
@@ -44,7 +45,7 @@ $d = mysqli_fetch_array($data);
             <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <form action="../aksi/aksi_edit_buku.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id_buku" value="<?= $d['id_buku']; ?>">
-                    
+
                     <!-- Cover Upload Section -->
                     <div class="mb-6">
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Cover Buku</label>
@@ -89,7 +90,8 @@ $d = mysqli_fetch_array($data);
                             <label for="id_kategori" class="block text-sm font-semibold text-gray-700 mb-1">Kategori</label>
                             <select name="id_kategori" id="id_kategori" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                                 <option value="">Pilih Kategori</option>
-                                <?php mysqli_data_seek($data_kategori, 0); while ($kategori = mysqli_fetch_array($data_kategori)) { ?>
+                                <?php mysqli_data_seek($data_kategori, 0);
+                                while ($kategori = mysqli_fetch_array($data_kategori)) { ?>
                                     <option value="<?= $kategori['id_kategori']; ?>" <?= ($kategori['id_kategori'] == $d['id_kategori']) ? 'selected' : ''; ?>>
                                         <?= $kategori['nama_kategori']; ?>
                                     </option>
@@ -135,4 +137,5 @@ $d = mysqli_fetch_array($data);
         });
     </script>
 </body>
+
 </html>

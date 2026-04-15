@@ -20,10 +20,11 @@ $tanggal = date('d M Y');
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Cetak Laporan Dipinjam</title>
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
-     <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,7 +60,8 @@ $tanggal = date('d M Y');
             margin-top: 10px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #999;
             padding: 6px;
             text-align: left;
@@ -117,19 +119,19 @@ $tanggal = date('d M Y');
         </thead>
 
         <tbody>
-            <?php if($total > 0): ?>
+            <?php if ($total > 0): ?>
                 <?php $no = 1; ?>
-                <?php while($t = mysqli_fetch_assoc($query)): ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $t['id_transaksi']; ?></td>
-                    <td><?= $t['nama']; ?></td>
-                    <td><?= $t['judul']; ?></td>
-                    <td><?= $t['jumlah']; ?></td>
-                    <td><?= date('d M Y', strtotime($t['tanggal_pinjam'])); ?></td>
-                    <td><?= date('d M Y', strtotime($t['tanggal_kembali'])); ?></td>
-                    <td><b>Sedang Dipinjam</b></td>
-                </tr>
+                <?php while ($t = mysqli_fetch_assoc($query)): ?>
+                    <tr>
+                        <td><?= $no++; ?></td>
+                        <td><?= $t['id_transaksi']; ?></td>
+                        <td><?= $t['nama']; ?></td>
+                        <td><?= $t['judul']; ?></td>
+                        <td><?= $t['jumlah']; ?></td>
+                        <td><?= date('d M Y', strtotime($t['tanggal_pinjam'])); ?></td>
+                        <td><?= date('d M Y', strtotime($t['tanggal_kembali'])); ?></td>
+                        <td><b>Sedang Dipinjam</b></td>
+                    </tr>
                 <?php endwhile; ?>
             <?php else: ?>
                 <tr>
@@ -149,4 +151,5 @@ $tanggal = date('d M Y');
     </div>
 
 </body>
+
 </html>

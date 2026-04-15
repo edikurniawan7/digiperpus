@@ -17,7 +17,7 @@ $total_transaksi = mysqli_fetch_assoc($q_transaksi)['total'];
 $q_pinjam = mysqli_query($config, "SELECT COUNT(*) as total FROM transaksi WHERE status = 'dipinjam'");
 $total_pinjam = mysqli_fetch_assoc($q_pinjam)['total'];
 
-// Ambil 4 buku terbaru
+// Ambil data buku terbaru
 $q_buku_terbaru = mysqli_query($config, "
     SELECT * FROM buku 
     ORDER BY id_buku DESC 
@@ -34,6 +34,7 @@ $queryTestimoni = mysqli_query($config, "
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,6 +42,7 @@ $queryTestimoni = mysqli_query($config, "
     <title>Digiperpus | Sistem Peminjaman Buku</title>
     <link href="./src/output.css" rel="stylesheet">
 </head>
+
 <body class="bg-teal-50">
 
     <!-- NAVIGATION / NAVBAR -->
@@ -110,7 +112,7 @@ $queryTestimoni = mysqli_query($config, "
             </h1>
 
             <p class="mt-4 text-sm md:text-base text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Kelola Peminjaman, koleksi buku, dan anggota dalam satu sistem digital 
+                Kelola Peminjaman, koleksi buku, dan anggota dalam satu sistem digital
                 yang mudah digunakan dan dapat diakses secara real-time.
             </p>
 
@@ -225,117 +227,117 @@ $queryTestimoni = mysqli_query($config, "
         <!-- Overlay -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-secondary/70 to-blue-primary/60"></div>
 
-       <!-- Statistics Content -->
-<div class="relative max-w-6xl mx-auto px-4">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <!-- Statistics Content -->
+        <div class="relative max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
 
-        <!-- Koleksi Buku -->
-        <div>
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                <?= $total_buku; ?>
+                <!-- Koleksi Buku -->
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">
+                        <?= $total_buku; ?>
+                    </div>
+                    <p class="text-sm text-blue-100 mt-1">Koleksi Buku</p>
+                </div>
+
+                <!-- Total Pengguna -->
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">
+                        <?= $total_user; ?>
+                    </div>
+                    <p class="text-sm text-blue-100 mt-1">Pengguna Terdaftar</p>
+                </div>
+
+                <!-- Total Peminjaman -->
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">
+                        <?= $total_transaksi; ?>
+                    </div>
+                    <p class="text-sm text-blue-100 mt-1">Total Peminjaman</p>
+                </div>
+
+                <!-- Sedang Dipinjam -->
+                <div>
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">
+                        <?= $total_pinjam; ?>
+                    </div>
+                    <p class="text-sm text-blue-100 mt-1">Sedang Dipinjam</p>
+                </div>
+
             </div>
-            <p class="text-sm text-blue-100 mt-1">Koleksi Buku</p>
         </div>
-
-        <!-- Total Pengguna -->
-        <div>
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                <?= $total_user; ?>
-            </div>
-            <p class="text-sm text-blue-100 mt-1">Pengguna Terdaftar</p>
-        </div>
-
-        <!-- Total Peminjaman -->
-        <div>
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                <?= $total_transaksi; ?>
-            </div>
-            <p class="text-sm text-blue-100 mt-1">Total Peminjaman</p>
-        </div>
-
-        <!-- Sedang Dipinjam -->
-        <div>
-            <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-                <?= $total_pinjam; ?>
-            </div>
-            <p class="text-sm text-blue-100 mt-1">Sedang Dipinjam</p>
-        </div>
-
-    </div>
-</div>
         </div>
     </section>
 
     <!-- BUKU TERBARU SECTION -->
-<section id="katalog" class="py-16 bg-gray-light">
-    <div class="max-w-6xl mx-auto px-4">
+    <section id="katalog" class="py-16 bg-gray-light">
+        <div class="max-w-6xl mx-auto px-4">
 
-        <!-- Heading -->
-        <div class="text-center mb-10">
-            <h2 class="text-2xl font-semibold text-blue-secondary mb-2">
-                Buku Terbaru
-            </h2>
-            <p class="text-sm text-gray-600">
-                Koleksi terbaru yang siap untuk Anda pinjam
-            </p>
-        </div>
-
-        <!-- GRID BUKU -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-
-        <?php if(mysqli_num_rows($q_buku_terbaru) > 0){ ?>
-            <?php while ($buku = mysqli_fetch_array($q_buku_terbaru)): ?>
-
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:scale-105 transition duration-300">
-
-                <!-- Cover -->
-                <div class="h-40 w-full bg-blue-100 flex items-center justify-center overflow-hidden">
-                    <img src="uploads/cover/<?= $buku['cover']; ?>"
-                         class="max-h-full max-w-full object-contain"
-                         onerror="this.src='assets/img/no-image.png'">
-                </div>
-
-                <!-- Info -->
-                <div class="p-4 flex flex-col flex-grow">
-
-                    <h3 class="text-base font-bold text-gray-700 mb-2 line-clamp-2">
-                        <?= $buku['judul']; ?>
-                    </h3>
-
-                    <div class="text-sm text-gray-600 mb-2">
-                        <?= $buku['pengarang']; ?>
-                    </div>
-
-                    <div class="text-sm text-gray-600 mb-4">
-                        <span class="font-semibold">Stok:</span>
-                        <?= $buku['stok']; ?>
-                    </div>
-
-                    <!-- Action -->
-                    <div class="flex gap-2 mt-auto">
-
-                        <a href="public/detail_buku.php?id=<?= $buku['id_buku']; ?>"
-                           class="flex-1 bg-blue-600 text-white px-2 py-1 rounded-lg text-center text-sm hover:bg-blue-500 transition">
-                            Detail
-                        </a>
-
-                    </div>
-
-                </div>
+            <!-- Heading -->
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-semibold text-blue-secondary mb-2">
+                    Buku Terbaru
+                </h2>
+                <p class="text-sm text-gray-600">
+                    Koleksi terbaru yang siap untuk Anda pinjam
+                </p>
             </div>
 
-            <?php endwhile; ?>
-        <?php } else { ?>
-            <p class="col-span-5 text-center text-gray-500">
-                Belum ada buku terbaru.
-            </p>
-        <?php } ?>
+            <!-- GRID BUKU -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
 
+                <?php if (mysqli_num_rows($q_buku_terbaru) > 0) { ?>
+                    <?php while ($buku = mysqli_fetch_array($q_buku_terbaru)): ?>
+
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:scale-105 transition duration-300">
+
+                            <!-- Cover -->
+                            <div class="h-40 w-full bg-blue-100 flex items-center justify-center overflow-hidden">
+                                <img src="uploads/cover/<?= $buku['cover']; ?>"
+                                    class="max-h-full max-w-full object-contain"
+                                    onerror="this.src='assets/img/no-image.png'">
+                            </div>
+
+                            <!-- Info -->
+                            <div class="p-4 flex flex-col flex-grow">
+
+                                <h3 class="text-base font-bold text-gray-700 mb-2 line-clamp-2">
+                                    <?= $buku['judul']; ?>
+                                </h3>
+
+                                <div class="text-sm text-gray-600 mb-2">
+                                    <?= $buku['pengarang']; ?>
+                                </div>
+
+                                <div class="text-sm text-gray-600 mb-4">
+                                    <span class="font-semibold">Stok:</span>
+                                    <?= $buku['stok']; ?>
+                                </div>
+
+                                <!-- Action -->
+                                <div class="flex gap-2 mt-auto">
+
+                                    <a href="public/detail_buku.php?id=<?= $buku['id_buku']; ?>"
+                                        class="flex-1 bg-blue-600 text-white px-2 py-1 rounded-lg text-center text-sm hover:bg-blue-500 transition">
+                                        Detail
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    <?php endwhile; ?>
+                <?php } else { ?>
+                    <p class="col-span-5 text-center text-gray-500">
+                        Belum ada buku terbaru.
+                    </p>
+                <?php } ?>
+
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-</div>
+    </div>
 
     <!-- TESTIMONIAL SECTION -->
     <section class="py-16 bg-teal-50">
@@ -346,55 +348,56 @@ $queryTestimoni = mysqli_query($config, "
                 <p class="text-sm text-gray-600">Pengalaman pengguna dalam menggunakan Digiperpus</p>
             </div>
 
-           <!-- Testimonial Slider -->
-<div class="overflow-hidden relative">
-    <div id="testimonialSlider" class="flex transition-transform duration-500">
+            <!-- Testimonial Slider -->
+            <div class="overflow-hidden relative">
+                <div id="testimonialSlider" class="flex transition-transform duration-500">
 
-        <?php if(mysqli_num_rows($queryTestimoni) > 0): ?>
-            <?php $index = 0; ?>
-            <?php while($data = mysqli_fetch_assoc($queryTestimoni)): ?>
-                
-                <div class="w-full flex-shrink-0 px-4">
-                    <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
-                        <p class="text-sm text-gray-600 italic mb-4">
-                            "<?= htmlspecialchars($data['pesan']); ?>"
-                        </p>
-                        <h4 class="text-sm font-semibold text-gray-700">
-                            <?= htmlspecialchars($data['nama']); ?>
-                        </h4>
-                        <span class="text-xs text-gray-500">
-                            Pengunjung
-                        </span>
-                    </div>
-                </div>
+                    <?php if (mysqli_num_rows($queryTestimoni) > 0): ?>
+                        <?php $index = 0; ?>
+                        <?php while ($data = mysqli_fetch_assoc($queryTestimoni)): ?>
 
-            <?php $index++; endwhile; ?>
-        <?php else: ?>
-            <div class="w-full flex-shrink-0 px-4">
-                <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
-                    <p class="text-sm text-gray-600 italic mb-4">
-                        "Belum ada testimoni tersedia."
-                    </p>
-                    <h4 class="text-sm font-semibold text-gray-700">
-                        Digiperpus
-                    </h4>
+                            <div class="w-full flex-shrink-0 px-4">
+                                <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
+                                    <p class="text-sm text-gray-600 italic mb-4">
+                                        "<?= htmlspecialchars($data['pesan']); ?>"
+                                    </p>
+                                    <h4 class="text-sm font-semibold text-gray-700">
+                                        <?= htmlspecialchars($data['nama']); ?>
+                                    </h4>
+                                    <span class="text-xs text-gray-500">
+                                        Pengunjung
+                                    </span>
+                                </div>
+                            </div>
+
+                        <?php $index++;
+                        endwhile; ?>
+                    <?php else: ?>
+                        <div class="w-full flex-shrink-0 px-4">
+                            <div class="bg-gray-light border border-gray-200 rounded-lg p-6 text-center">
+                                <p class="text-sm text-gray-600 italic mb-4">
+                                    "Belum ada testimoni tersedia."
+                                </p>
+                                <h4 class="text-sm font-semibold text-gray-700">
+                                    Digiperpus
+                                </h4>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                 </div>
             </div>
-        <?php endif; ?>
 
-    </div>
-</div>
-
-    <!-- Slider Dots Navigation -->
-<div class="flex justify-center mt-6 gap-2">
-    <?php 
-    mysqli_data_seek($queryTestimoni, 0); 
-    $i = 0;
-    while(mysqli_fetch_assoc($queryTestimoni)):
-    $i++;
-    endwhile; 
-    ?>
-</div>
+            <!-- Slider Dots Navigation -->
+            <div class="flex justify-center mt-6 gap-2">
+                <?php
+                mysqli_data_seek($queryTestimoni, 0);
+                $i = 0;
+                while (mysqli_fetch_assoc($queryTestimoni)):
+                    $i++;
+                endwhile;
+                ?>
+            </div>
             <!-- Slider Dots Navigation -->
             <div class="flex justify-center mt-6 gap-2">
                 <button class="dot w-2.5 h-2.5 bg-blue-secondary rounded-full" data-slide="0"></button>
@@ -437,34 +440,34 @@ $queryTestimoni = mysqli_query($config, "
                 </div>
 
                 <form id="contactForm" class="space-y-4">
-    <div>
-        <input type="text" name="nama" placeholder="Nama" required
-        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
-    </div>
+                    <div>
+                        <input type="text" name="nama" placeholder="Nama" required
+                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
+                    </div>
 
-    <div>
-        <input type="email" name="email" placeholder="Email" required
-        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
-    </div>
+                    <div>
+                        <input type="email" name="email" placeholder="Email" required
+                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary">
+                    </div>
 
-    <div>
-        <textarea name="pesan" rows="4" placeholder="Pesan" required
-        class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary"></textarea>
-    </div>
+                    <div>
+                        <textarea name="pesan" rows="4" placeholder="Pesan" required
+                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:border-blue-secondary"></textarea>
+                    </div>
 
-    <button id="submitBtn" type="submit"
-    class="w-full bg-blue-secondary text-white text-sm py-2 rounded-md hover:bg-blue-primary transition">
-        Kirim Pesan
-    </button>
+                    <button id="submitBtn" type="submit"
+                        class="w-full bg-blue-secondary text-white text-sm py-2 rounded-md hover:bg-blue-primary transition">
+                        Kirim Pesan
+                    </button>
 
-    <p id="formMessage" class="text-sm text-center mt-2"></p>
-</form>
+                    <p id="formMessage" class="text-sm text-center mt-2"></p>
+                </form>
             </div>
 
             <!-- Google Maps Embed Full Width -->
             <div class="mt-8">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4484.198878425387!2d107.84287690451383!3d-7.216201958943139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ba8e1722dc49%3A0xcad8aa88ea668a6!2sSMK%20Al%20Madani%20Garut!5e0!3m2!1sid!2sid!4v1774775455271!5m2!1sid!2sid" 
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4484.198878425387!2d107.84287690451383!3d-7.216201958943139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ba8e1722dc49%3A0xcad8aa88ea668a6!2sSMK%20Al%20Madani%20Garut!5e0!3m2!1sid!2sid!4v1774775455271!5m2!1sid!2sid"
                     class="w-full h-64 rounded-lg border border-gray-200"
                     loading="lazy">
                 </iframe>
@@ -475,49 +478,50 @@ $queryTestimoni = mysqli_query($config, "
 
     <!-- FOOTER -->
     <footer class="bg-white border-t border-gray-200 mt-16">
-    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
-        
-        <!-- Branding -->
-        <div>
-            <div class="flex items-center gap-3">
-                <img src="assets/img/logo_digiperpus1.png" alt="Logo DigiPerpus" class="h-12 w-40 object-cover">
+        <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+            <!-- Branding -->
+            <div>
+                <div class="flex items-center gap-3">
+                    <img src="assets/img/logo_digiperpus1.png" alt="Logo DigiPerpus" class="h-12 w-40 object-cover">
+                </div>
+
+                <p class="text-gray-600 mt-4 leading-relaxed text-sm">
+                    Sistem peminjaman buku digital yang dirancang untuk memberikan kemudahan dalam mengelola serta mengakses koleksi buku.
+                </p>
             </div>
 
-            <p class="text-gray-600 mt-4 leading-relaxed text-sm">
-                Sistem peminjaman buku digital yang dirancang untuk memberikan kemudahan dalam mengelola serta mengakses koleksi buku.
-            </p>
+            <!-- Navigasi -->
+            <div>
+                <h3 class="text-blue-secondary font-medium mb-4">Navigasi</h3>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                    <li><a href="#beranda" class="hover:text-black transition">Beranda</a></li>
+                    <li><a href="#tentang" class="hover:text-black transition">Tentang</a></li>
+                    <li><a href="#katalog" class="hover:text-black transition">Katalog Buku</a></li>
+                    <li><a href="#fitur" class="hover:text-black transition">Layanan</a></li>
+                </ul>
+            </div>
+
+            <!-- Kontak -->
+            <div>
+                <h3 class="text-blue-secondary font-medium mb-4">Kontak</h3>
+                <p class="text-gray-600 text-sm">Email: digiperpus577@gmail.com</p>
+                <p class="text-gray-600 text-sm mt-2">Telp: +62 821-6451-2787</p>
+                <p class="text-gray-600 text-sm mt-2">Alamat: Garut, Jawa Barat</p>
+            </div>
         </div>
 
-        <!-- Navigasi -->
-        <div>
-            <h3 class="text-blue-secondary font-medium mb-4">Navigasi</h3>
-            <ul class="space-y-2 text-gray-600 text-sm">
-                <li><a href="#beranda" class="hover:text-black transition">Beranda</a></li>
-                <li><a href="#tentang" class="hover:text-black transition">Tentang</a></li>
-                <li><a href="#katalog" class="hover:text-black transition">Katalog Buku</a></li>
-                <li><a href="#fitur" class="hover:text-black transition">Layanan</a></li>
-            </ul>
+        <!-- Bottom -->
+        <div class="border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-6 py-4 text-center text-gray-500 text-sm">
+                © 2026 Sistem Peminjaman Buku Digital. All rights reserved.
+            </div>
         </div>
+    </footer>
 
-        <!-- Kontak -->
-        <div>
-            <h3 class="text-blue-secondary font-medium mb-4">Kontak</h3>
-            <p class="text-gray-600 text-sm">Email: digiperpus577@gmail.com</p>
-            <p class="text-gray-600 text-sm mt-2">Telp: +62 821-6451-2787</p>
-            <p class="text-gray-600 text-sm mt-2">Alamat: Garut, Jawa Barat</p>
-        </div>
-    </div>
-
-    <!-- Bottom -->
-    <div class="border-t border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 text-center text-gray-500 text-sm">
-            © 2026 Sistem Peminjaman Buku Digital. All rights reserved.
-        </div>
-    </div>
-</footer>
-
-     <!-- JavaScript -->
+    <!-- JavaScript -->
     <script src="assets/js/kontak.js"></script>
     <script src="assets/js/index.js"></script>
 </body>
+
 </html>

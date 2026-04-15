@@ -7,6 +7,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +19,15 @@ session_start();
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
-    
+
     <!-- Konten Utama -->
     <main class="flex-1 ml-64 p-8 mt-20">
         <h1 class="text-2xl font-bold text-gray-800">
-        Daftar Anggota
-    </h1>
-    <p class="text-gray-600 mb-6 text-sm">
-        Berikut adalah daftar anggota yang terdaftar dalam sistem.
-    </p>
+            Daftar Anggota
+        </h1>
+        <p class="text-gray-600 mb-6 text-sm">
+            Berikut adalah daftar anggota yang terdaftar dalam sistem.
+        </p>
 
         <div class="bg-white p-6 rounded-lg shadow-sm">
             <!-- Filter & Search -->
@@ -59,29 +60,29 @@ session_start();
                         $query = "SELECT id_user, nama, username FROM users WHERE role='user' ORDER BY nama ASC";
                         $result = mysqli_query($config, $query);
 
-                        if(mysqli_num_rows($result) > 0):
+                        if (mysqli_num_rows($result) > 0):
                             while ($row = mysqli_fetch_assoc($result)):
                         ?>
-                            <tr class="anggota-item border border-gray-300 hover:bg-slate-50 transition"
-                                data-id="<?= strtolower($row['id_user']); ?>"
-                                data-nama="<?= strtolower($row['nama']); ?>"
-                                data-username="<?= strtolower($row['username']); ?>">
-                                <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
-                                <td class="px-4 py-3 text-gray-700"><?= $row['nama']; ?></td>
-                                <td class="px-4 py-3 text-gray-700"><?= $row['username']; ?></td>
-                                <td class="px-4 py-3 text-center">
-                                    <a href="edit_anggota.php?id=<?= $row['id_user']; ?>" class="mr-2 bg-blue-100 border border-blue-500 rounded-lg px-3 py-1 text-blue-600 hover:bg-blue-200 transition">
-                                        Edit
-                                    </a>
-                                    <button onclick="hapusAnggota('<?= $row['id_user']; ?>')" class="bg-red-100 border border-red-500 rounded-lg px-2 py-1 text-red-600 hover:bg-red-200 transition">
-                                        Hapus
-                                    </button>
-                                </td>
-                            </tr>
-                        <?php 
+                                <tr class="anggota-item border border-gray-300 hover:bg-slate-50 transition"
+                                    data-id="<?= strtolower($row['id_user']); ?>"
+                                    data-nama="<?= strtolower($row['nama']); ?>"
+                                    data-username="<?= strtolower($row['username']); ?>">
+                                    <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $row['nama']; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $row['username']; ?></td>
+                                    <td class="px-4 py-3 text-center">
+                                        <a href="edit_anggota.php?id=<?= $row['id_user']; ?>" class="mr-2 bg-blue-100 border border-blue-500 rounded-lg px-3 py-1 text-blue-600 hover:bg-blue-200 transition">
+                                            Edit
+                                        </a>
+                                        <button onclick="hapusAnggota('<?= $row['id_user']; ?>')" class="bg-red-100 border border-red-500 rounded-lg px-2 py-1 text-red-600 hover:bg-red-200 transition">
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php
                             endwhile;
                         else:
-                        ?>
+                            ?>
                             <tr>
                                 <td colspan="4" class="py-4 text-center text-gray-500">
                                     Belum ada anggota.
@@ -98,14 +99,15 @@ session_start();
             </div>
         </div>
     </main>
-    
+
     <script src="../assets/js/anggota-filter.js"></script>
     <script>
         function hapusAnggota(id) {
-            if(confirm('Apakah Anda yakin ingin menghapus anggota ini?')) {
+            if (confirm('Apakah Anda yakin ingin menghapus anggota ini?')) {
                 window.location.href = 'hapus_anggota.php?id_user=' + id;
             }
         }
     </script>
 </body>
+
 </html>

@@ -68,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -78,111 +79,112 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body class="bg-gradient-to-r from-cyan-100 to-teal-50 min-h-screen">
 
-<?php include 'partials/sidebar.php'; ?>
+    <?php include 'partials/sidebar.php'; ?>
 
-<main class="flex-1 ml-64 p-8 mt-20">
+    <main class="flex-1 ml-64 p-8 mt-20">
 
-    <!-- Header -->
-    <div class="mb-6">
-        <h1 class="text-2xl font-bold text-gray-800">Detail Peminjaman</h1>
-        <p class="text-sm text-gray-600">Informasi lengkap transaksi peminjaman buku</p>
-    </div>
-
-    <!-- Card -->
-    <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
-
-        <!-- Alert -->
-        <?php if (isset($success_msg)): ?>
-        <div class="mb-4 p-3 bg-green-100 text-green-700 rounded text-sm">
-            <?= $success_msg ?>
-        </div>
-        <?php endif; ?>
-
-        <!-- Header Card -->
-        <div class="flex justify-between items-center mb-6">
-            <div>
-                <h2 class="text-lg font-semibold text-gray-800">Informasi Transaksi</h2>
-                <p class="text-xs text-gray-500">Detail peminjaman user</p>
-            </div>
-
-            <span class="px-3 py-1 text-xs rounded-full 
-                <?= $transaksi['status'] == 'Dipinjam' ? 'bg-green-100 text-green-800' : ($transaksi['status'] == 'Menunggu Konfirmasi' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800') ?>">
-                <?= $transaksi['status'] ?>
-            </span>
+        <!-- Header -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">Detail Peminjaman</h1>
+            <p class="text-sm text-gray-600">Informasi lengkap transaksi peminjaman buku</p>
         </div>
 
-        <!-- Detail Grid -->
-        <div class="grid grid-cols-2 gap-6 mb-6">
+        <!-- Card -->
+        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
 
-            <div class="bg-gray-50 p-3 rounded-lg">
-                <p class="text-xs text-gray-500">Nama User</p>
-                <p class="text-sm font-semibold text-gray-800">
-                    <?= htmlspecialchars($transaksi['nama']) ?>
-                </p>
-            </div>
-
-            <div class="bg-gray-50 p-3 rounded-lg">
-                <p class="text-xs text-gray-500">ID Transaksi</p>
-                <p class="text-sm font-semibold text-gray-800">
-                    <?= $transaksi['id_transaksi'] ?>
-                </p>
-            </div>
-
-            <div class="bg-gray-50 p-3 rounded-lg">
-                <p class="text-xs text-gray-500">Judul Buku</p>
-                <p class="text-sm font-semibold text-gray-800">
-                    <?= htmlspecialchars($transaksi['judul']) ?>
-                </p>
-            </div>
-
-            <div class="bg-gray-50 p-3 rounded-lg">
-                <p class="text-xs text-gray-500">Pengarang</p>
-                <p class="text-sm font-semibold text-gray-800">
-                    <?= htmlspecialchars($transaksi['pengarang']) ?>
-                </p>
-            </div>
-
-            <div class="bg-gray-50 p-3 rounded-lg">
-                <p class="text-xs text-gray-500">Tanggal Pinjam</p>
-                <p class="text-sm font-semibold text-gray-800">
-                    <?= date('d M Y', strtotime($transaksi['tanggal_pinjam'])) ?>
-                </p>
-            </div>
-
-            <div class="bg-gray-50 p-3 rounded-lg ">
-                <p class="text-xs text-gray-500">Tanggal Kembali</p>
-                <p class="text-sm font-semibold text-gray-800">
-                    <?= date('d M Y', strtotime($transaksi['tanggal_kembali'])) ?>
-                </p>
-            </div>
-
-        </div>
-
-        <!-- Status Update Form -->
-            <form method="POST" class="mb-4 border-t pt-4">
-            <div class="flex items-end gap-3">
-                <div>
-                <p class="text-gray-600 font-semibold mb-2 text-xs">Status</p>
-                <select name="status" class="border border-gray-300 rounded-lg px-3 py-2 text-xs">
-                    <option value="Dipinjam" <?= $transaksi['status'] == 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
-                    <option value="Menunggu Konfirmasi" <?= $transaksi['status'] == 'menunggu konfirmasi' ? 'selected' : '' ?>>Menunggu Konfirmasi</option>
-                    <option value="Dikembalikan" <?= $transaksi['status'] == 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
-                </select>
+            <!-- Alert -->
+            <?php if (isset($success_msg)): ?>
+                <div class="mb-4 p-3 bg-green-100 text-green-700 rounded text-sm">
+                    <?= $success_msg ?>
                 </div>
-                <button type="submit" class="bg-blue-500 rounded-lg  text-white px-3 py-2 text-xs hover:bg-blue-600">
-                Simpan
-                </button>
+            <?php endif; ?>
+
+            <!-- Header Card -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-800">Informasi Transaksi</h2>
+                    <p class="text-xs text-gray-500">Detail peminjaman user</p>
+                </div>
+
+                <span class="px-3 py-1 text-xs rounded-full 
+                <?= $transaksi['status'] == 'Dipinjam' ? 'bg-green-100 text-green-800' : ($transaksi['status'] == 'Menunggu Konfirmasi' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800') ?>">
+                    <?= $transaksi['status'] ?>
+                </span>
             </div>
+
+            <!-- Detail Grid -->
+            <div class="grid grid-cols-2 gap-6 mb-6">
+
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-xs text-gray-500">Nama User</p>
+                    <p class="text-sm font-semibold text-gray-800">
+                        <?= htmlspecialchars($transaksi['nama']) ?>
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-xs text-gray-500">ID Transaksi</p>
+                    <p class="text-sm font-semibold text-gray-800">
+                        <?= $transaksi['id_transaksi'] ?>
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-xs text-gray-500">Judul Buku</p>
+                    <p class="text-sm font-semibold text-gray-800">
+                        <?= htmlspecialchars($transaksi['judul']) ?>
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-xs text-gray-500">Pengarang</p>
+                    <p class="text-sm font-semibold text-gray-800">
+                        <?= htmlspecialchars($transaksi['pengarang']) ?>
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg">
+                    <p class="text-xs text-gray-500">Tanggal Pinjam</p>
+                    <p class="text-sm font-semibold text-gray-800">
+                        <?= date('d M Y', strtotime($transaksi['tanggal_pinjam'])) ?>
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg ">
+                    <p class="text-xs text-gray-500">Tanggal Kembali</p>
+                    <p class="text-sm font-semibold text-gray-800">
+                        <?= date('d M Y', strtotime($transaksi['tanggal_kembali'])) ?>
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Status Update Form -->
+            <form method="POST" class="mb-4 border-t pt-4">
+                <div class="flex items-end gap-3">
+                    <div>
+                        <p class="text-gray-600 font-semibold mb-2 text-xs">Status</p>
+                        <select name="status" class="border border-gray-300 rounded-lg px-3 py-2 text-xs">
+                            <option value="Dipinjam" <?= $transaksi['status'] == 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
+                            <option value="Menunggu Konfirmasi" <?= $transaksi['status'] == 'menunggu konfirmasi' ? 'selected' : '' ?>>Menunggu Konfirmasi</option>
+                            <option value="Dikembalikan" <?= $transaksi['status'] == 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="bg-blue-500 rounded-lg  text-white px-3 py-2 text-xs hover:bg-blue-600">
+                        Simpan
+                    </button>
+                </div>
             </form>
 
-        <!-- Back -->
-        <a href="daftar_transaksi.php" 
-           class="inline-block mt-4 text-sm text-gray-500 hover:text-blue-primary hover:underline">
-           ← Kembali ke daftar
-        </a>
+            <!-- Back -->
+            <a href="daftar_transaksi.php"
+                class="inline-block mt-4 text-sm text-gray-500 hover:text-blue-primary hover:underline">
+                ← Kembali ke daftar
+            </a>
 
-    </div>
+        </div>
 
-</main>
+    </main>
 </body>
+
 </html>

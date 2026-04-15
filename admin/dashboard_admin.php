@@ -18,6 +18,7 @@ if ($_SESSION['role'] !== 'admin') {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,7 @@ if ($_SESSION['role'] !== 'admin') {
     <!-- Tailwind CSS -->
     <link href="../src/output.css" rel="stylesheet">
 </head>
+
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
@@ -181,29 +183,29 @@ if ($_SESSION['role'] !== 'admin') {
                                 ? '../assets/img/pinjam.png'
                                 : '../assets/img/file.png';
                     ?>
-                    <div class="flex items-center justify-between p-3 <?php echo $status_class; ?> rounded-lg">
-                        <div class="flex items-center gap-3">
-                            <img src="<?php echo $icon; ?>" class="w-5 h-5" alt="">
-                            <div>
-                                <p class="text-sm font-medium text-gray-800">
-                                    <?php echo $row['nama']; ?>
-                                </p>
-                                <p class="text-xs text-gray-500">
-                                    <?php echo date('d M Y', strtotime($row['tanggal_pinjam'])); ?>
-                                </p>
+                            <div class="flex items-center justify-between p-3 <?php echo $status_class; ?> rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <img src="<?php echo $icon; ?>" class="w-5 h-5" alt="">
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-800">
+                                            <?php echo $row['nama']; ?>
+                                        </p>
+                                        <p class="text-xs text-gray-500">
+                                            <?php echo date('d M Y', strtotime($row['tanggal_pinjam'])); ?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-semibold uppercase">
+                                    <?php echo ucfirst($row['status']); ?>
+                                </span>
                             </div>
-                        </div>
-                        <span class="text-xs font-semibold uppercase">
-                            <?php echo ucfirst($row['status']); ?>
-                        </span>
-                    </div>
-                    <?php
+                        <?php
                         endwhile;
                     else:
-                    ?>
-                    <p class="text-sm text-gray-500 text-center">
-                        Belum ada aktivitas
-                    </p>
+                        ?>
+                        <p class="text-sm text-gray-500 text-center">
+                            Belum ada aktivitas
+                        </p>
                     <?php endif; ?>
                 </div>
 
@@ -264,4 +266,5 @@ if ($_SESSION['role'] !== 'admin') {
         </div>
     </main>
 </body>
+
 </html>

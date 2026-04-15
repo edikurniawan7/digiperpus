@@ -1,4 +1,4 @@
-<?php 
+<?php
 $current_page = basename($_SERVER['PHP_SELF']);
 $menu_items = [
     ['file' => 'dashboard.php', 'label' => 'Dashboard', 'icon' => 'dashboard.png'],
@@ -16,30 +16,30 @@ $menu_items = [
 
     <!-- Notifikasi Untuk User -->
     <?php
-$id_user = $_SESSION['id_user'];
+    $id_user = $_SESSION['id_user'];
 
-$q = mysqli_query($config, "
+    $q = mysqli_query($config, "
     SELECT COUNT(*) as total 
     FROM transaksi 
     WHERE id_user = '$id_user'
     AND (status = 'dipinjam' OR status = 'dikembalikan')
 ");
 
-$total = mysqli_fetch_array($q)['total'];
+    $total = mysqli_fetch_array($q)['total'];
 
-$last_seen = $_SESSION['last_notif_user'] ?? 0;
-$new_notif = $total - $last_seen;
-?>
+    $last_seen = $_SESSION['last_notif_user'] ?? 0;
+    $new_notif = $total - $last_seen;
+    ?>
 
-<a href="notifikasi.php" class="relative mr-4">
-    <img src="../assets/img/bell.png" class="w-6 h-6">
+    <a href="notifikasi.php" class="relative mr-4">
+        <img src="../assets/img/bell.png" class="w-6 h-6">
 
-    <?php if ($new_notif > 0): ?>
-        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 rounded-full">
-            <?= $new_notif ?>
-        </span>
-    <?php endif; ?>
-</a>
+        <?php if ($new_notif > 0): ?>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1.5 rounded-full">
+                <?= $new_notif ?>
+            </span>
+        <?php endif; ?>
+    </a>
     <div class="flex items-center gap-2 sm:gap-4">
         <div class="text-right hidden sm:block">
             <p class="text-sm font-semibold text-gray-700"><?php echo $_SESSION['username']; ?></p>
@@ -47,7 +47,7 @@ $new_notif = $total - $last_seen;
         </div>
         <a href="profil.php">
             <img src="../assets/img/profil.webp" alt="User Icon" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover">
-        </a>
+        </a> 
     </div>
 </nav>
 
@@ -63,8 +63,8 @@ $new_notif = $total - $last_seen;
         <ul class="space-y-2 font-medium ml-2">
             <?php foreach ($menu_items as $item): ?>
                 <li>
-                    <a href="<?php echo $item['file']; ?>" 
-                       class="flex items-center gap-3 px-3 py-2 text-white rounded-lg transition-all <?php echo $current_page == $item['file'] ? 'bg-blue-primary border-l-4 border-white' : 'hover:bg-blue-primary'; ?>">
+                    <a href="<?php echo $item['file']; ?>"
+                        class="flex items-center gap-3 px-3 py-2 text-white rounded-lg transition-all <?php echo $current_page == $item['file'] ? 'bg-blue-primary border-l-4 border-white' : 'hover:bg-blue-primary'; ?>">
                         <img src="../assets/img/<?php echo $item['icon']; ?>" alt="<?php echo $item['label']; ?>" class="w-5 h-5">
                         <span><?php echo $item['label']; ?></span>
                     </a>
@@ -74,8 +74,8 @@ $new_notif = $total - $last_seen;
             <hr class="my-4 border-blue-primary">
 
             <li>
-                <a href="../auth/logout.php" onclick="confirmLogout(event)" 
-                   class="flex items-center gap-3 px-3 py-2 text-white rounded-lg hover:bg-blue-primary transition-all">
+                <a href="../auth/logout.php" onclick="confirmLogout(event)"
+                    class="flex items-center gap-3 px-3 py-2 text-white rounded-lg hover:bg-blue-primary transition-all">
                     <img src="../assets/img/logout.png" alt="Logout" class="w-5 h-5">
                     <span>Logout</span>
                 </a>
@@ -85,10 +85,10 @@ $new_notif = $total - $last_seen;
 </aside>
 
 <script>
-function confirmLogout(event) {
-    event.preventDefault();
-    if (confirm('Yakin ingin keluar?')) {
-        window.location.href = '../auth/logout.php';
+    function confirmLogout(event) {
+        event.preventDefault();
+        if (confirm('Yakin ingin keluar?')) {
+            window.location.href = '../auth/logout.php';
+        }
     }
-}
 </script>

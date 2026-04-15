@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include '../config.php';
 
@@ -7,7 +7,8 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 // cek user
-$login = mysqli_query($config, 
+$login = mysqli_query(
+    $config,
     "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1"
 );
 $cek = mysqli_num_rows($login);
@@ -33,15 +34,11 @@ if ($cek > 0) {
     else if ($data['role'] == "user") {
         header("Location: ../user/dashboard.php");
         exit;
-    }
-
-    else {
+    } else {
         header("Location: ../auth/login.php?error=1");
         exit;
     }
-
 } else {
     header("Location: ../auth/login.php?error=1");
     exit;
 }
-?>

@@ -59,4 +59,3 @@ echo "<script>
     alert('Buku berhasil dipinjam!');
     window.location.href='../user/daftar_peminjaman.php';
 </script>";
-?>

@@ -12,13 +12,14 @@ $data_kategori = mysqli_query(
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <title>Tambah Buku | Digiperpus</title>
     <link href="../src/output.css" rel="stylesheet">
-    
+
     <!-- JS Preview Cover -->
     <script src="../assets/js/cover-preview.js"></script>
 </head>
@@ -26,9 +27,9 @@ $data_kategori = mysqli_query(
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
-    
+
     <!-- Main Content -->
-    <main class="ml-64 p-6 mt-16">  
+    <main class="ml-64 p-6 mt-16">
         <div class="max-w-2xl mx-auto">
             <div class="mb-6 ">
                 <h1 class="text-2xl font-bold text-gray-800">Tambah Buku Baru</h1>
@@ -39,7 +40,7 @@ $data_kategori = mysqli_query(
             <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <form action="../aksi/aksi_tambah_buku.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id_buku">
-                    
+
                     <!-- Cover Upload Section -->
                     <div class="mb-6">
                         <label class="block text-sm font-semibold text-gray-700 mb-3">Cover Buku</label>
@@ -124,4 +125,5 @@ $data_kategori = mysqli_query(
         </div>
     </main>
 </body>
+
 </html>

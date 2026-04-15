@@ -32,14 +32,12 @@ try {
                 'message' => mysqli_error($config)
             ]);
         }
-
     } else {
         echo json_encode([
             'status' => 'error',
             'message' => 'Invalid request'
         ]);
     }
-
 } catch (Exception $e) {
     echo json_encode([
         'status' => 'error',

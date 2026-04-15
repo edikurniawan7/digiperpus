@@ -6,7 +6,7 @@ include '../config.php';
 $nama = $_POST['nama'];
 $username = $_POST['username'];
 $password = $_POST['password'];
-$confirm_password = $_POST['confirm_password']; 
+$confirm_password = $_POST['confirm_password'];
 
 // Validasi data
 if (!$nama || !$username || !$password || !$confirm_password) {
@@ -41,4 +41,4 @@ echo "<script>
     window.location.href='../admin/daftar_anggota.php';
 </script>";
 
-?>  
+?>

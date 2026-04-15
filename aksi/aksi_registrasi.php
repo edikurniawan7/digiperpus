@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Simpan ke database
     $insertQuery = "INSERT INTO users (nama, username, password, role) 
                     VALUES ('$nama', '$username', '$password', '$role')";
-    
+
     if (mysqli_query($config, $insertQuery)) {
         header("Location: ../auth/login.php?success=1");
         exit();

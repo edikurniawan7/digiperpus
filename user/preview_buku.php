@@ -31,12 +31,13 @@ if (!$buku) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../assets/img/logo_title.png" type="image/png">
     <title>Preview Buku - <?php echo htmlspecialchars($buku['judul']); ?></title>
-    <link href="../src/output.css" rel="stylesheet"> 
+    <link href="../src/output.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
@@ -47,8 +48,8 @@ if (!$buku) {
             <!-- Detail Buku Ringkas -->
             <div class="flex gap-6 mb-6 pb-6 border-b">
                 <div class="w-32 flex-shrink-0">
-                    <img src="../uploads/cover/<?= $buku['cover']; ?>" alt="<?= $buku['judul']; ?>" 
-                         class="w-full rounded shadow-sm object-cover">
+                    <img src="../uploads/cover/<?= $buku['cover']; ?>" alt="<?= $buku['judul']; ?>"
+                        class="w-full rounded shadow-sm object-cover">
                 </div>
                 <div class="flex-1 text-sm">
                     <h3 class="text-xl font-semibold text-gray-900 mb-2"><?php echo htmlspecialchars($buku['judul']); ?></h3>
@@ -65,7 +66,8 @@ if (!$buku) {
                         </div>
                         <div>
                             <p class="text-gray-600 font-semibold">Kategori</p>
-                            <p class="text-gray-800"><?php echo htmlspecialchars($buku['id_kategori']); // Consider fetching category name if needed ?></p>
+                            <p class="text-gray-800"><?php echo htmlspecialchars($buku['id_kategori']); // Consider fetching category name if needed 
+                                                        ?></p>
                         </div>
                     </div>
                 </div>
@@ -81,11 +83,11 @@ if (!$buku) {
 
             <!-- Tombol Aksi -->
             <div class="flex items-center gap-3 pt-4 mt-6 border-t">
-                <a href="dashboard.php?id_buku=<?= $buku['id_buku']; ?>" 
+                <a href="dashboard.php?id_buku=<?= $buku['id_buku']; ?>"
                     class="text-sm px-3 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
                     ← Kembali
                 </a>
-                <a href="baca_buku.php?id=<?= $buku['id_buku']; ?>" 
+                <a href="baca_buku.php?id=<?= $buku['id_buku']; ?>"
                     class="ml-auto px-3 py-2 text-sm font-medium text-white bg-blue-secondary rounded-lg hover:bg-blue-primary transition">
                     Baca Sekarang
                 </a>
@@ -93,6 +95,7 @@ if (!$buku) {
         </div>
     </main>
 
-    
+
 </body>
+
 </html>

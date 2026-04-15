@@ -1,9 +1,10 @@
-<?php 
+<?php
 // Ambil nama file yang sedang dibuka
 $current_page = basename($_SERVER['PHP_SELF']);
 
 // Helper function untuk check active menu
-function isActive($page) {
+function isActive($page)
+{
     global $current_page;
     return $current_page == $page ? 'bg-blue-primary border-l-4 border-white' : 'hover:bg-blue-primary';
 }
@@ -33,24 +34,24 @@ $menu_items = [
 
     <!-- Notifikasi -->
     <?php
-$notif_query = mysqli_query($config, "
+    $notif_query = mysqli_query($config, "
     SELECT COUNT(*) AS total 
     FROM transaksi 
     WHERE (status = 'menunggu konfirmasi' OR status = 'dipinjam')
     AND is_read = 0
 ");
-$notif_count = mysqli_fetch_array($notif_query)['total'];
-?>
+    $notif_count = mysqli_fetch_array($notif_query)['total'];
+    ?>
 
-<a href="notifikasi.php" class="relative mr-4"> 
-    <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5 lg:w-6 lg:h-6">
+    <a href="notifikasi.php" class="relative mr-4">
+        <img src="../assets/img/bell.png" alt="Notifikasi" class="w-5 h-5 lg:w-6 lg:h-6">
 
-    <?php if ($notif_count > 0): ?>
-        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
-            <?= $notif_count; ?>
-        </span>
-    <?php endif; ?>
-</a>
+        <?php if ($notif_count > 0): ?>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
+                <?= $notif_count; ?>
+            </span>
+        <?php endif; ?>
+    </a>
 
     <div class="flex items-center gap-2 lg:gap-4">
         <div class="hidden sm:block text-right">
@@ -69,16 +70,16 @@ $notif_count = mysqli_fetch_array($notif_query)['total'];
         <!-- Logo -->
         <div class="flex items-center justify-center border-b border-white mb-10">
             <img src="../assets/img/logo_digiperpus1.png" alt="Logo DigiPerpus" class="h-14 w-40 rounded-3xl object-cover">
-        </div> 
+        </div>
         <!-- Menu Items -->
         <ul class="space-y-2 font-medium mt-10 ml-2">
-            <?php foreach($menu_items as $item): ?>
-            <li>
-                <a href="<?= $item['file']; ?>" class="flex items-center p-2 text-white rounded-lg <?= isActive($item['file']); ?> transition-all">
-                    <img src="../assets/img/<?= $item['icon']; ?>" alt="<?= $item['label']; ?>" class="w-5 h-5 mr-3">
-                    <span><?= $item['label']; ?></span>
-                </a>
-            </li>
+            <?php foreach ($menu_items as $item): ?>
+                <li>
+                    <a href="<?= $item['file']; ?>" class="flex items-center p-2 text-white rounded-lg <?= isActive($item['file']); ?> transition-all">
+                        <img src="../assets/img/<?= $item['icon']; ?>" alt="<?= $item['label']; ?>" class="w-5 h-5 mr-3">
+                        <span><?= $item['label']; ?></span>
+                    </a>
+                </li>
             <?php endforeach; ?>
 
             <hr class="my-4 border-blue-primary">

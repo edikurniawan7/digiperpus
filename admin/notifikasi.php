@@ -38,6 +38,7 @@ mysqli_query($config, "
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +46,7 @@ mysqli_query($config, "
     <title>Notifikasi - Digiperpus</title>>
     <link href="../src/output.css" rel="stylesheet">
 </head>
+
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
     <?php include 'partials/sidebar.php'; ?>
@@ -59,61 +61,62 @@ mysqli_query($config, "
         </p>
         <div class="bg-white p-6 rounded-lg shadow-md">
 
-    <div class="space-y-3">
-    <?php while ($data = mysqli_fetch_assoc($query)): ?>
-        
-        <?php
-            $isUnread = $data['is_read'] == 0;
+            <div class="space-y-3">
+                <?php while ($data = mysqli_fetch_assoc($query)): ?>
 
-            if ($data['status'] == 'dipinjam') {
-                $color = 'blue';
-                $text = 'meminjam buku';
-                $icon = 'logobook.png';
-            } else {
-                $color = 'teal';
-                $text = 'mengajukan pengembalian';
-                $icon = 'pinjam.png';
-            }
-        ?>
+                    <?php
+                    $isUnread = $data['is_read'] == 0;
 
-        <div class="flex items-center gap-3 p-3 rounded-lg border-l-4 
+                    if ($data['status'] == 'dipinjam') {
+                        $color = 'blue';
+                        $text = 'meminjam buku';
+                        $icon = 'logobook.png';
+                    } else {
+                        $color = 'teal';
+                        $text = 'mengajukan pengembalian';
+                        $icon = 'pinjam.png';
+                    }
+                    ?>
+
+                    <div class="flex items-center gap-3 p-3 rounded-lg border-l-4 
             <?= $isUnread ? "bg-{$color}-50 border-{$color}-500" : "bg-gray-50 border-gray-300" ?> 
             hover:shadow-md transition-all group">
 
-            <div class="p-2 rounded-lg 
+                        <div class="p-2 rounded-lg 
                 <?= $isUnread ? "bg-{$color}-200/50" : "bg-gray-200" ?>">
-                <img src="../assets/img/<?= $icon; ?>" class="w-5 h-5">
+                            <img src="../assets/img/<?= $icon; ?>" class="w-5 h-5">
+                        </div>
+
+                        <div class="flex-1">
+                            <p class="text-sm <?= $isUnread ? 'font-semibold text-gray-800' : 'text-gray-600' ?>">
+                                <?= $data['nama']; ?> <?= $text; ?>
+                            </p>
+                            <p class="text-xs text-gray-500">
+                                Buku: <?= $data['judul']; ?>
+                            </p>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="detail_transaksi.php?id=<?= $data['id_transaksi']; ?>"
+                                class="text-xs px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
+                                Detail
+                            </a>
+
+                            <?php if ($data['status'] == 'menunggu konfirmasi'): ?>
+                                <a href="daftar_transaksi.php?id=<?= $data['id_transaksi']; ?>"
+                                    class="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600">
+                                    Konfirmasi
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+
+                <?php endwhile; ?>
             </div>
-
-            <div class="flex-1">
-                <p class="text-sm <?= $isUnread ? 'font-semibold text-gray-800' : 'text-gray-600' ?>">
-                    <?= $data['nama']; ?> <?= $text; ?>
-                </p>
-                <p class="text-xs text-gray-500">
-                    Buku: <?= $data['judul']; ?>
-                </p>
-            </div>
-
-            <div class="flex gap-2">
-                <a href="detail_transaksi.php?id=<?= $data['id_transaksi']; ?>" 
-                   class="text-xs px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">
-                   Detail
-                </a>
-
-                <?php if ($data['status'] == 'menunggu konfirmasi'): ?>
-                    <a href="daftar_transaksi.php?id=<?= $data['id_transaksi']; ?>" 
-                       class="text-xs px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600">
-                       Konfirmasi
-                    </a>
-                <?php endif; ?>
-            </div>
-
         </div>
-
-    <?php endwhile; ?>
-    </div>
-</div>
 
     </main>
 </body>
+
 </html>

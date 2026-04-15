@@ -27,7 +27,6 @@ if (!empty($password)) {
         password='$password'
         WHERE id_user='$id_user'
     ");
-
 } else {
 
     $query = mysqli_query($config, "UPDATE users SET 
@@ -42,4 +41,3 @@ if ($query) {
 } else {
     echo "<script>alert('Gagal memperbarui data!'); window.history.back();</script>";
 }
-?>

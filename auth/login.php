@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +13,10 @@
     <div class="w-full max-w-sm">
         <!-- Logo -->
         <div class="text-center mb-4">
-            <img 
-                src="../assets/img/logo_digiperpus1.png" 
-                alt="Logo DigiPerpus" 
-                class="h-18 w-auto rounded-3xl object-cover mx-auto "
-            >
+            <img
+                src="../assets/img/logo_digiperpus1.png"
+                alt="Logo DigiPerpus"
+                class="h-18 w-auto rounded-3xl object-cover mx-auto ">
             <p class="text-sm text-gray-600">Masuk ke sistem peminjaman buku</p>
         </div>
 
@@ -30,30 +30,28 @@
                 <?php endif; ?>
 
                 <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-    <div class="mb-4 text-center text-sm text-red-500 font-medium">
-        Username atau password salah!
-    </div>
-<?php endif; ?>
-            
-            <!-- Kolom Username -->
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700 mb-3">
-                Username
-                </label>
-                <div class="relative">
-                <img 
-                            src="../assets/img/user.png" 
-                            alt="" 
-                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
-                        >
-                        <input 
-                            type="text" 
+                    <div class="mb-4 text-center text-sm text-red-500 font-medium">
+                        Username atau password salah!
+                    </div>
+                <?php endif; ?>
+
+                <!-- Kolom Username -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-3">
+                        Username
+                    </label>
+                    <div class="relative">
+                        <img
+                            src="../assets/img/user.png"
+                            alt=""
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none">
+                        <input
+                            type="text"
                             id="username"
                             name="username"
                             class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition"
                             placeholder="Masukkan username"
-                            required
-                        >
+                            required>
                     </div>
                 </div>
 
@@ -63,24 +61,21 @@
                         Password
                     </label>
                     <div class="relative">
-                        <img 
-                            src="../assets/img/padlock.png" 
-                            alt="" 
-                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none"
-                        >
-                        <input 
+                        <img
+                            src="../assets/img/padlock.png"
+                            alt=""
+                            class="absolute left-3 top-3.5 w-4 h-4 pointer-events-none">
+                        <input
                             type="password"
-                            id="password"  
+                            id="password"
                             name="password"
                             class="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:border-teal-500 focus:ring-2 focus:ring-teal-200 focus:outline-none transition"
                             placeholder="Masukkan password"
-                            required
-                        >
-                        <button 
-                            type="button" 
+                            required>
+                        <button
+                            type="button"
                             id="togglePassword"
-                            class="absolute right-3 top-3 text-gray-400 hover:text-teal-500 transition"
-                        >
+                            class="absolute right-3 top-3 text-gray-400 hover:text-teal-500 transition">
                             <img id="eyeIcon" class="w-5 h-5" src="../assets/img/hidden.png" alt="Tampilkan">
                             <img id="eyeOffIcon" class="w-5 h-5 hidden" src="../assets/img/eye.png" alt="Sembunyikan">
                         </button>
@@ -95,22 +90,21 @@
                 <!-- Tombol Login -->
                 <button
                     type="submit"
-                    class="w-full mb-4 bg-blue-secondary hover:bg-blue-primary text-white text-sm font-semibold py-2.5 px-4 rounded-lg transition transform hover:scale-105 shadow-md"
-                >
+                    class="w-full mb-4 bg-blue-secondary hover:bg-blue-primary text-white text-sm font-semibold py-2.5 px-4 rounded-lg transition transform hover:scale-105 shadow-md">
                     Masuk
                 </button>
 
             </form>
-             <!-- Tombol Register -->
-        <div class="text-center mt-2 text-sm text-gray-600">
-            Belum punya akun?
-            <a href="../auth/registrasi.php" class="text-teal-primary font-semibold hover:underline">
-                Daftar sekarang
-            </a>
-        </div>
+            <!-- Tombol Register -->
+            <div class="text-center mt-2 text-sm text-gray-600">
+                Belum punya akun?
+                <a href="../auth/registrasi.php" class="text-teal-primary font-semibold hover:underline">
+                    Daftar sekarang
+                </a>
+            </div>
         </div>
 
-       
+
 
         <!-- Tombol Kembali -->
         <div class="text-center mt-4">
@@ -122,7 +116,5 @@
 
     <script src="../assets/js/login.js"></script>
 </body>
+
 </html>
-
-
-

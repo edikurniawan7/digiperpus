@@ -33,6 +33,7 @@ $query = mysqli_query($config, "
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,10 +43,11 @@ $query = mysqli_query($config, "
     <!-- Tailwind CSS -->
     <link href="../src/output.css" rel="stylesheet">
 </head>
+
 <body class="bg-gradient-to-t from-cyan-100 to-teal-50 min-h-screen">
     <!-- Sidebar -->
-     <?php include 'partials/sidebar.php'; ?>
-    
+    <?php include 'partials/sidebar.php'; ?>
+
     <!-- Konten Utama -->
     <main class="flex-1 ml-64 p-8 mt-20 ">
         <h1 class="text-2xl font-bold text-gray-800">
@@ -55,136 +57,138 @@ $query = mysqli_query($config, "
             Berikut adalah riwayat peminjaman buku yang telah dilakukan oleh anggota.
         </p>
 
-        
+
         <!-- Tabel Data  -->
         <div class="bg-white p-6 rounded-lg shadow-sm">
-        
-         <!-- SEARCH dan PAGINATION -->
-        <div class="flex items-center gap-4 flex-wrap mb-6">
-        <form onsubmit="return false;" class="flex items-center gap-3 flex-1 min-w-max">
-            <input name="search" placeholder="Cari nama anggota..." type="text" class="flex-1 bg-white px-3 py-2 text-xs border border-gray-400 rounded-full focus:outline-none focus:border-blue-500 transition">
-        </form>
-        <select onchange="changeLimit(this.value)"
-            class="text-xs font-semibold">
 
-                <option value="5" <?= $limit == 5 ? 'selected' : '' ?>>5 Data</option>
-                <option value="10" <?= $limit == 10 ? 'selected' : '' ?>>10 Data</option>
-                <option value="25" <?= $limit == 25 ? 'selected' : '' ?>>25 Data</option>
-                <option value="50" <?= $limit == 50 ? 'selected' : '' ?>>50 Data</option>
-        </select>
-        <!-- Cetak PDF -->
-        <a href="cetak_riwayat_peminjaman.php" target="_blank" class="ml-auto bg-green-100 border border-green-500 rounded-lg px-3 py-2 text-xs text-green-600 hover:bg-green-200 transition flex items-center gap-1">
-             <img src="../assets/img/pdf-file.png" alt="Cetak" class="w-4 h-4"> Cetak PDF
-        </a>
-        </div>
-       <!-- TABLE -->
-    <div class="overflow-x-auto">
-        <table class="w-full text-xs border-collapse">
-            <thead>
-                <tr class="bg-gray-100 rounded-lg text-gray-700 uppercase text-left border border-gray-300">
-                    <th class="px-4 py-3">No</th>
-                    <th class="px-4 py-3">Nama</th>
-                    <th class="px-4 py-3">Judul</th>
-                    <th class="px-4 py-3">Jumlah</th>
-                    <th class="px-4 py-3">Tgl Pinjam</th>
-                    <th class="px-4 py-3">Tgl Kembali</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3 text-center">Aksi</th>
-                </tr>
-            </thead>
+            <!-- SEARCH dan PAGINATION -->
+            <div class="flex items-center gap-4 flex-wrap mb-6">
+                <form onsubmit="return false;" class="flex items-center gap-3 flex-1 min-w-max">
+                    <input name="search" placeholder="Cari nama anggota..." type="text" class="flex-1 bg-white px-3 py-2 text-xs border border-gray-400 rounded-full focus:outline-none focus:border-blue-500 transition">
+                </form>
+                <select onchange="changeLimit(this.value)"
+                    class="text-xs font-semibold">
 
-            <tbody id="transaksi-body">
-                <?php $no = 1; if(mysqli_num_rows($query) > 0){ ?>
-                <?php while($t = mysqli_fetch_array($query)){ ?>
-                
-                <tr class="transaksi-item border border-gray-300 hover:bg-slate-50 transition"
-                    data-id="<?= strtolower($t['id_transaksi']); ?>"
-                    data-nama="<?= strtolower($t['nama']); ?>"
-                    data-judul="<?= strtolower($t['judul']); ?>"
-                    data-status="<?= strtolower($t['status']); ?>">
+                    <option value="5" <?= $limit == 5 ? 'selected' : '' ?>>5 Data</option>
+                    <option value="10" <?= $limit == 10 ? 'selected' : '' ?>>10 Data</option>
+                    <option value="25" <?= $limit == 25 ? 'selected' : '' ?>>25 Data</option>
+                    <option value="50" <?= $limit == 50 ? 'selected' : '' ?>>50 Data</option>
+                </select>
+                <!-- Cetak PDF -->
+                <a href="cetak_riwayat_peminjaman.php" target="_blank" class="ml-auto bg-green-100 border border-green-500 rounded-lg px-3 py-2 text-xs text-green-600 hover:bg-green-200 transition flex items-center gap-1">
+                    <img src="../assets/img/pdf-file.png" alt="Cetak" class="w-4 h-4"> Cetak PDF
+                </a>
+            </div>
+            <!-- TABLE -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 rounded-lg text-gray-700 uppercase text-left border border-gray-300">
+                            <th class="px-4 py-3">No</th>
+                            <th class="px-4 py-3">Nama</th>
+                            <th class="px-4 py-3">Judul</th>
+                            <th class="px-4 py-3">Jumlah</th>
+                            <th class="px-4 py-3">Tgl Pinjam</th>
+                            <th class="px-4 py-3">Tgl Kembali</th>
+                            <th class="px-4 py-3">Status</th>
+                            <th class="px-4 py-3 text-center">Aksi</th>
+                        </tr>
+                    </thead>
 
-                    <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
-                    <td class="px-4 py-3 text-gray-700"><?= $t['nama']; ?></td>
-                    <td class="px-4 py-3 text-gray-700"><?= $t['judul']; ?></td>
-                    <td class="px-4 py-3 text-gray-700"><?= $t['jumlah']; ?></td>
-                    <td class="px-4 py-3 text-gray-700"><?= $t['tanggal_pinjam']; ?></td>
-                    <td class="px-4 py-3 text-gray-700"><?= $t['tanggal_kembali']; ?></td>
+                    <tbody id="transaksi-body">
+                        <?php $no = 1;
+                        if (mysqli_num_rows($query) > 0) { ?>
+                            <?php while ($t = mysqli_fetch_array($query)) { ?>
 
-                    <td class="px-4 py-3">
-                        <?php if($t['status'] == 'dipinjam'): ?>
-                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Dipinjam</span>
-                        <?php else: ?>
-                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Dikembalikan</span>
-                        <?php endif; ?>
-                    </td>
+                                <tr class="transaksi-item border border-gray-300 hover:bg-slate-50 transition"
+                                    data-id="<?= strtolower($t['id_transaksi']); ?>"
+                                    data-nama="<?= strtolower($t['nama']); ?>"
+                                    data-judul="<?= strtolower($t['judul']); ?>"
+                                    data-status="<?= strtolower($t['status']); ?>">
 
-                    <td class="px-4 py-3 text-center">
-                        <a href="detail_transaksi.php?id=<?= $t['id_transaksi']; ?>" class="mr-2 bg-blue-100 border border-blue-500 rounded-lg px-3 py-1 text-blue-600 hover:bg-blue-200 transition">
-                            Detail
-                        </a>
-                        <button onclick="hapusTransaksi('<?= $t['id_transaksi']; ?>')" class="bg-red-100 border border-red-500 rounded-lg px-2 py-1 text-red-600 hover:bg-red-200 transition">
-                            Hapus
-                        </button>
-                    </td>
-                </tr>
+                                    <td class="px-4 py-3 text-gray-700"><?= $no++; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $t['nama']; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $t['judul']; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $t['jumlah']; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $t['tanggal_pinjam']; ?></td>
+                                    <td class="px-4 py-3 text-gray-700"><?= $t['tanggal_kembali']; ?></td>
 
-                <?php } ?>
-            <?php } ?>
-            </tbody>
-        </table>
-    </div>
+                                    <td class="px-4 py-3">
+                                        <?php if ($t['status'] == 'dipinjam'): ?>
+                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Dipinjam</span>
+                                        <?php else: ?>
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Dikembalikan</span>
+                                        <?php endif; ?>
+                                    </td>
 
-    <div id="empty-transaksi" class="hidden text-center text-xs text-gray-500 font-medium mt-6">
-        Transaksi tidak ditemukan
-    </div>
+                                    <td class="px-4 py-3 text-center">
+                                        <a href="detail_transaksi.php?id=<?= $t['id_transaksi']; ?>" class="mr-2 bg-blue-100 border border-blue-500 rounded-lg px-3 py-1 text-blue-600 hover:bg-blue-200 transition">
+                                            Detail
+                                        </a>
+                                        <button onclick="hapusTransaksi('<?= $t['id_transaksi']; ?>')" class="bg-red-100 border border-red-500 rounded-lg px-2 py-1 text-red-600 hover:bg-red-200 transition">
+                                            Hapus
+                                        </button>
+                                    </td>
+                                </tr>
 
-    <!-- PAGINATION -->
-    <div class="flex justify-between items-center mt-6 text-xs">
+                            <?php } ?>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
 
-    <div class="text-gray-500">
-        Halaman <?= $page; ?> dari <?= $total_pages; ?>
-    </div>
+            <div id="empty-transaksi" class="hidden text-center text-xs text-gray-500 font-medium mt-6">
+                Transaksi tidak ditemukan
+            </div>
 
-    <div class="flex gap-2">
+            <!-- PAGINATION -->
+            <div class="flex justify-between items-center mt-6 text-xs">
 
-        <!-- PREV -->
-        <a href="?page=<?= max(1, $page - 1); ?>&limit=<?= $limit; ?>"
-           class="px-3 py-1 rounded 
+                <div class="text-gray-500">
+                    Halaman <?= $page; ?> dari <?= $total_pages; ?>
+                </div>
+
+                <div class="flex gap-2">
+
+                    <!-- PREV -->
+                    <a href="?page=<?= max(1, $page - 1); ?>&limit=<?= $limit; ?>"
+                        class="px-3 py-1 rounded 
            <?= ($page == 1) ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'; ?>">
-            Prev
-        </a>
+                        Prev
+                    </a>
 
-        <!-- NEXT -->
-        <a href="?page=<?= min($total_pages, $page + 1); ?>&limit=<?= $limit; ?>"
-           class="px-3 py-1 rounded 
+                    <!-- NEXT -->
+                    <a href="?page=<?= min($total_pages, $page + 1); ?>&limit=<?= $limit; ?>"
+                        class="px-3 py-1 rounded 
            <?= ($page >= $total_pages) ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'; ?>">
-            Next
-        </a>
+                        Next
+                    </a>
 
-    </div>
+                </div>
 
-</div>
+            </div>
 
-</div>
-</main>
-<!--js filter-->
-<script src="../assets/js/transaksi-filter.js"></script>
-<script>
-    function hapusTransaksi(id) {
-        if (confirm('Hapus transaksi ini?')) {
-            window.location.href = `hapus_transaksi.php?id=${id}`;
+        </div>
+    </main>
+    <!--js filter-->
+    <script src="../assets/js/transaksi-filter.js"></script>
+    <script>
+        function hapusTransaksi(id) {
+            if (confirm('Hapus transaksi ini?')) {
+                window.location.href = `hapus_transaksi.php?id=${id}`;
+            }
         }
-    }
 
-    function changePage(page) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const limit = urlParams.get('limit') || 5;
-        window.location.href = `?page=${page}&limit=${limit}`;
-    }
+        function changePage(page) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const limit = urlParams.get('limit') || 5;
+            window.location.href = `?page=${page}&limit=${limit}`;
+        }
 
-    function changeLimit(limit) {
-        window.location.href = `?page=1&limit=${limit}`;
-    }
-</script>
+        function changeLimit(limit) {
+            window.location.href = `?page=1&limit=${limit}`;
+        }
+    </script>
 </body>
+
 </html>

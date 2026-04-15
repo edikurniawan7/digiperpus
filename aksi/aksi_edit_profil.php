@@ -36,4 +36,3 @@ if (mysqli_query($config, $query)) {
 } else {
     echo "error";
 }
-?>
