@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== TOGGLE PASSWORD =====
+    // Toggle password visibility
     const toggle = (btn, input, eye, eyeOff) => {
         btn?.addEventListener('click', () => {
             const hidden = input.type === 'password';
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
 
-    // ===== VALIDASI LOGIN =====
+    // Validasi login
    document.addEventListener('DOMContentLoaded', () => {
 
     console.log("JS jalan");

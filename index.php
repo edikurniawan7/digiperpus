@@ -46,7 +46,7 @@ $queryTestimoni = mysqli_query($config, "
 <body class="bg-teal-50">
 
     <!-- NAVIGATION / NAVBAR -->
-    <nav class="bg-white backdrop-blur-md shadow-sm border-b border-white/20 fixed w-full top-0 z-50 transition-all duration-500" id="navbar">
+    <nav id="navbar" class="bg-white backdrop-blur-md shadow-sm border-b border-white/20 fixed w-full top-0 z-50 transition-all duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-18">
                 <!-- LOGO -->
